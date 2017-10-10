@@ -11,8 +11,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var app_component_1 = require("../app.component");
 var Game_1 = require("../model/Game");
+var game_service_1 = require("../game/game.service");
 var NewGameComponent = (function () {
-    function NewGameComponent() {
+    function NewGameComponent(gameService) {
+        this.gameService = gameService;
         this.newGame = null;
     }
     NewGameComponent.prototype.ngOnInit = function () {
@@ -20,6 +22,7 @@ var NewGameComponent = (function () {
     };
     NewGameComponent.prototype.startGame = function () {
         this.app.currentGame = this.newGame;
+        this.gameService.setCurrentGame(this.newGame);
         this.app.showGame();
     };
     return NewGameComponent;
@@ -33,7 +36,8 @@ NewGameComponent = __decorate([
         selector: 'newgame',
         templateUrl: './newgame.component.html',
         styleUrls: ['./newgame.component.css']
-    })
+    }),
+    __metadata("design:paramtypes", [game_service_1.GameService])
 ], NewGameComponent);
 exports.NewGameComponent = NewGameComponent;
 //# sourceMappingURL=newgame.component.js.map

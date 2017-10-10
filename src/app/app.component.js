@@ -27,9 +27,6 @@ var AppComponent = (function () {
         this.gameService.save(newGame);
         this.gameService.setCurrentGame(newGame);
     };
-    AppComponent.prototype.continueGame = function () {
-        this.gameState = 'game';
-    };
     AppComponent.prototype.showGame = function () {
         this.gameState = 'game';
     };
@@ -42,7 +39,7 @@ AppComponent = __decorate([
     core_1.Component({
         selector: 'my-app',
         providers: [game_service_1.GameService],
-        template: "<main-menu *ngIf=\"gameState === 'menu'\" [app]=\"this\"></main-menu>\n    <game *ngIf=\"gameState==='game'\" [game]=\"currentGame\"></game>\n  ",
+        template: "<main-menu *ngIf=\"gameState === 'menu'\" [app]=\"this\"></main-menu>\n    <game *ngIf=\"gameState==='game'\" [app]=\"this\" [game]=\"currentGame\"></game>\n  ",
     }),
     __metadata("design:paramtypes", [game_service_1.GameService])
 ], AppComponent);

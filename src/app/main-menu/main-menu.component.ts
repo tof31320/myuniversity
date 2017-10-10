@@ -31,7 +31,7 @@ export class MainMenuComponent {
   }
 
   hasNoSaves(){
-    return false;
+    return this.gameService.getAllGameSaves().length === 0;
   }
 
   continueCurrentGame(){

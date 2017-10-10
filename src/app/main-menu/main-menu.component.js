@@ -27,7 +27,7 @@ var MainMenuComponent = (function () {
         return this.app.currentGame != null;
     };
     MainMenuComponent.prototype.hasNoSaves = function () {
-        return false;
+        return this.gameService.getAllGameSaves().length === 0;
     };
     MainMenuComponent.prototype.continueCurrentGame = function () {
         this.app.showGame();

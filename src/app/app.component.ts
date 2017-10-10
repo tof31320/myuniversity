@@ -7,7 +7,7 @@ import { GameService } from './game/game.service';
   selector: 'my-app',
   providers: [GameService],
   template: `<main-menu *ngIf="gameState === 'menu'" [app]="this"></main-menu>
-    <game *ngIf="gameState==='game'" [game]="currentGame"></game>
+    <game *ngIf="gameState==='game'" [app]="this" [game]="currentGame"></game>
   `,
 })
 export class AppComponent implements OnInit {
@@ -31,10 +31,6 @@ export class AppComponent implements OnInit {
 
     this.gameService.save(newGame);
     this.gameService.setCurrentGame(newGame);
-  }
-
-  continueGame() {
-    this.gameState = 'game';
   }
 
   showGame(){

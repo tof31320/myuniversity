@@ -10,15 +10,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var Game_1 = require("../model/Game");
+var game_service_1 = require("../game/game.service");
+var app_component_1 = require("../app.component");
 var GameComponent = (function () {
-    function GameComponent() {
+    function GameComponent(gameService) {
+        this.gameService = gameService;
     }
     GameComponent.prototype.showMainMenu = function () {
     };
+    GameComponent.prototype.saveGame = function () {
+        this.gameService.save(this.game);
+    };
     GameComponent.prototype.quit = function () {
+        this.app.showMenu();
     };
     return GameComponent;
 }());
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", app_component_1.AppComponent)
+], GameComponent.prototype, "app", void 0);
 __decorate([
     core_1.Input(),
     __metadata("design:type", Game_1.Game)
@@ -27,7 +38,8 @@ GameComponent = __decorate([
     core_1.Component({
         selector: 'game',
         templateUrl: './game.component.html'
-    })
+    }),
+    __metadata("design:paramtypes", [game_service_1.GameService])
 ], GameComponent);
 exports.GameComponent = GameComponent;
 //# sourceMappingURL=game.component.js.map
