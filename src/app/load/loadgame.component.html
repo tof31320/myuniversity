@@ -1,0 +1,13 @@
+<div id="loadGameMenu">
+    <div *ngIf="!gamesaves || gamesaves.length == 0" class="no-saves">Aucune sauvegarde!</div>
+    <ul>
+        <li *ngFor="let gs of gamesaves">
+            <div class="gamesave-date">{{gs.date| date: 'dd/MM/yyyy'}}</div>
+            <div class="gamesave-info">{{gs.game.player.name}} - {{gs.game.university.name}}</div>
+            <div class="gamesave-actions">
+                <button (click)="loadGame(gs)" class="pure-button button-secondary">Charger</button>
+                <button (click)="deleteGame(gs)" class="pure-button button-error">Supprimer</button>
+            </div>
+        </li>
+    </ul>
+</div>

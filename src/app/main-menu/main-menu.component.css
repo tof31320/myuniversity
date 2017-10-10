@@ -1,0 +1,14 @@
+#mainMenu {
+    margin: auto;
+    width: 30%;
+    text-align: center;
+}
+
+#mainMenu li {
+    list-style: none;
+    padding-top: 5px;
+}
+
+#mainMenu button {
+    min-width: 200px;
+}

@@ -1,0 +1,18 @@
+<div id="mainMenu">
+    <ul>
+        <li>
+            <button class="pure-button active" (click)="continueCurrentGame('newgame')" [disabled]="!hasCurrentGame()">Continuer</button>
+        </li>
+        <li>
+            <button class="pure-button" (click)="showScreen('newgame')">Nouvelle partie</button>
+            <newgame *ngIf="screen==='newgame'" [app]="app"></newgame>
+        </li>
+        <li>
+            <button class="pure-button" (click)="showScreen('load')" [disabled]="hasNoSaves()">Charger</button>
+            <load-game *ngIf="screen==='load'" [app]="app"></load-game>
+        </li>
+        <li>
+            <button class="pure-button" (click)="showScreen('credits')">Crédits</button>
+        </li>
+    </ul>
+</div>
