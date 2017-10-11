@@ -1,1 +1,16 @@
 <h1>Batiments</h1>
+<button (click)="showBuildForm()" class="pure-button">Construire...</button>
+<div id="buildForm" *ngIf="buildFormVisible">
+    <div class="type-batiment" *ngFor="let type of typesBatiment" (click)="build(type)" [ngClass]="{'disabled':!gameComponent.game.canBuild(type)}">
+        <div class="type-batiment-name">{{type.nom}}</div>
+        <div class="type-batiment-size">[{{type.size}}]</div>
+        <div class="type-batiment-price">${{type.price}}</div>
+    </div>
+    <button class="pure-button button-xsmall" (click)="closeBuildForm()">Annuler</button>
+</div>
+<div *ngIf="!batiments || batiments.length===0">Vous n'avez aucun batiment</div>
+<div class="batiments" *ngIf="batiments && batiments.length>0">
+    <div class="batiment" *ngFor="let b of batiments">
+        <div class="type-batiment-name">{{b.nom}}</div>
+    </div>
+</div>

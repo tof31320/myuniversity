@@ -1,0 +1,16 @@
+.type-batiment {
+    padding: 10px 10px 10px 10px;
+    border: solid 1px lightgrey;
+    width: 500px;
+    margin: 5px 5px 5px 25px;
+}
+
+.type-batiment:hover {
+    background-color: #ecf0f1;
+    cursor: pointer;
+}
+
+.type-batiment.disabled {
+    cursor: auto;
+    background-color: lightcoral;
+}

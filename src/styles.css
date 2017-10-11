@@ -4,5 +4,13 @@ h1 {
     font-size: 250%;
 }
 
+.danger {
+    color: red;
+}
+
+.warning {
+    color: orange;
+}
+
 
 /* Modal */

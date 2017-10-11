@@ -1,4 +1,5 @@
 "use strict";
+var Game_1 = require("./Game");
 var GameSave = (function () {
     function GameSave(game) {
         this.id = 0;
@@ -7,6 +8,13 @@ var GameSave = (function () {
         this.game = game;
         this.date = new Date();
     }
+    GameSave.fromJSON = function (json) {
+        var gs = new GameSave(Game_1.Game.fromJSON(json['game']));
+        gs.id = json['id'];
+        gs.title = json['title'];
+        gs.date = json['date'];
+        return gs;
+    };
     return GameSave;
 }());
 exports.GameSave = GameSave;

@@ -1,8 +1,8 @@
 <div class="logo"></div>
 <div id="statusBar">
     <div class="playerInfos">{{game.player.name}} - {{game.university.name}} </div>
-    <div class="playerMoney">$ {{game.player.money}}</div>
-    <div class="area">0 / {{game.university.areaSize}}</div>
+    <div class="playerMoney" [ngClass]="{'warning':game.player.money < 10}">$ {{game.player.money}}</div>
+    <div class="area">{{game.university.usedSpace()}} / {{game.university.areaSize}}</div>
     <div class="buttons">
         <button class="pure-button button-xsmall" [ngClass]="{'button-success': gameComponent.currentScreen==='buildings'}" (click)="gameComponent.showScreen('buildings')" title="Gérer le campus">
           <i class="fa fa-university"></i>

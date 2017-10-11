@@ -1,0 +1,49 @@
+[{
+        "id": 1,
+        "nom": "Centre administratif",
+        "icon": "",
+        "price": 1000,
+        "size": 1
+    },
+    {
+        "id": 2,
+        "nom": "Salle de cours (Petite)",
+        "icon": "",
+        "price": 500,
+        "size": 1
+    },
+    {
+        "id": 3,
+        "nom": "Salle de cours (Moyenne)",
+        "icon": "",
+        "price": 1500,
+        "size": 2
+    },
+    {
+        "id": 4,
+        "nom": "Salle de cours (Grande)",
+        "icon": "",
+        "price": 2000,
+        "size": 3
+    },
+    {
+        "id": 5,
+        "nom": "Amphi-théatre",
+        "icon": "",
+        "price": 5000,
+        "size": 5
+    },
+    {
+        "id": 6,
+        "nom": "Bibliothèque",
+        "icon": "",
+        "price": 2500,
+        "size": 5
+    },
+    {
+        "id": 7,
+        "nom": "Restaurant",
+        "icon": "",
+        "price": 6000
+    }
+]

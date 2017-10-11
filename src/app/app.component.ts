@@ -19,7 +19,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(){
     this.currentGame = this.gameService.getCurrentGame();
-
     /*if(this.currentGame != null){
       this.gameState = 'game';
     }*/

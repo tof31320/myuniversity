@@ -30,6 +30,9 @@ var GameComponent = (function () {
     GameComponent.prototype.quit = function () {
         this.app.showMenu();
     };
+    GameComponent.prototype.sync = function () {
+        this.gameService.setCurrentGame(this.game);
+    };
     return GameComponent;
 }());
 __decorate([

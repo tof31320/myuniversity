@@ -6,6 +6,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
+var Game_1 = require("../model/Game");
 var GameSave_1 = require("../model/GameSave");
 var GameService = (function () {
     function GameService() {
@@ -16,13 +17,20 @@ var GameService = (function () {
         if (!localStorage.getItem(this.LSID_SAVES)) {
             return new Array();
         }
-        return JSON.parse(localStorage.getItem(this.LSID_SAVES));
+        var saves = new Array();
+        var json = JSON.parse(localStorage.getItem(this.LSID_SAVES));
+        for (var i = 0; i < json.length; i++) {
+            var gs = GameSave_1.GameSave.fromJSON(json[i]);
+            saves.push(gs);
+        }
+        return saves;
     };
     GameService.prototype.getCurrentGame = function () {
         if (!sessionStorage.getItem(this.LSID_CURRENT)) {
             return null;
         }
-        return JSON.parse(sessionStorage.getItem(this.LSID_CURRENT));
+        var g = Game_1.Game.fromJSON(JSON.parse(sessionStorage.getItem(this.LSID_CURRENT)));
+        return g;
     };
     GameService.prototype.setCurrentGame = function (game) {
         sessionStorage.setItem(this.LSID_CURRENT, JSON.stringify(game));

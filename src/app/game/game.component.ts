@@ -34,4 +34,8 @@ export class GameComponent {
   quit(){
     this.app.showMenu();
   }
+
+  sync(){
+    this.gameService.setCurrentGame(this.game);
+  }
 }
