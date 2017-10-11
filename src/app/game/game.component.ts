@@ -12,14 +12,23 @@ export class GameComponent {
   @Input() app: AppComponent;
   @Input() game: Game;
 
+  menuInGameVisible: boolean = false;
+
+  currentScreen: string = 'dashboard';
+
   constructor(private gameService: GameService){
   }
 
   showMainMenu(){
+    this.menuInGameVisible = true;
   }
 
   saveGame(){
     this.gameService.save(this.game);
+  }
+
+  showScreen(screen: string){
+    this.currentScreen = screen;
   }
 
   quit(){

@@ -1,0 +1,50 @@
+#statusBar {
+    width: 100%;
+    background-color: #2980b9;
+    color: white;
+    height: 40px;
+}
+
+#statusBar li {
+    display: inline;
+    list-style: none;
+    padding-left: 0;
+}
+
+#statusBar div {
+    padding: 10px 10px 10px 64px;
+}
+
+.logo {
+    background: url('assets/images/college.png');
+    z-index: 1;
+    width: 64px;
+    height: 64px;
+    position: absolute;
+    left: 3;
+}
+
+#statusBar .playerInfos {
+    width: 100px;
+    float: left;
+    font-weight: bold;
+}
+
+#statusBar .playerMoney {
+    width: 100px;
+    float: left;
+}
+
+#statusBar .actions {
+    float: right;
+}
+
+#statusBar .area {
+    width: 100px;
+    float: left;
+}
+
+#statusBar .buttons {
+    float: left;
+    width: 200px;
+}

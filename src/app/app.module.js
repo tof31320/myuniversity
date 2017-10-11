@@ -13,6 +13,12 @@ var main_menu_component_1 = require("./main-menu/main-menu.component");
 var newgame_component_1 = require("./newgame/newgame.component");
 var game_component_1 = require("./game/game.component");
 var loadgame_component_1 = require("./load/loadgame.component");
+var status_bar_component_1 = require("./status-bar/status-bar.component");
+var in_game_menu_component_1 = require("./in-game-menu/in-game-menu.component");
+var building_screen_component_1 = require("./screens/buildings/building-screen.component");
+var formation_screen_component_1 = require("./screens/formations/formation-screen.component");
+var rh_screen_component_1 = require("./screens/rh/rh-screen.component");
+var student_screen_component_1 = require("./screens/students/student-screen.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -21,7 +27,9 @@ var AppModule = (function () {
 AppModule = __decorate([
     core_1.NgModule({
         imports: [platform_browser_1.BrowserModule, forms_1.FormsModule],
-        declarations: [app_component_1.AppComponent, main_menu_component_1.MainMenuComponent, newgame_component_1.NewGameComponent, game_component_1.GameComponent, loadgame_component_1.LoadGameComponent],
+        declarations: [app_component_1.AppComponent, main_menu_component_1.MainMenuComponent, newgame_component_1.NewGameComponent, game_component_1.GameComponent, loadgame_component_1.LoadGameComponent,
+            status_bar_component_1.StatusBarComponent, in_game_menu_component_1.InGameMenuComponent,
+            building_screen_component_1.BuildingScreenComponent, formation_screen_component_1.FormationScreenComponent, rh_screen_component_1.RHScreenComponent, student_screen_component_1.StudentScreenComponent],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);

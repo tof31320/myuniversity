@@ -28,7 +28,13 @@ export class LoadGameComponent implements OnInit {
   }
 
   loadGame(gameSave: GameSave){
+
+    this.app.currentGame = gameSave.game;
+
+    this.gameService.setCurrentGame(gameSave.game);
     this.onGameSelection.emit(gameSave);
+
+    this.app.showGame();
   }
 
   deleteGame(gameSave: GameSave){

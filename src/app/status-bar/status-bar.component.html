@@ -1,0 +1,25 @@
+<div class="logo"></div>
+<div id="statusBar">
+    <div class="playerInfos">{{game.player.name}} - {{game.university.name}} </div>
+    <div class="playerMoney">$ {{game.player.money}}</div>
+    <div class="area">0 / {{game.university.areaSize}}</div>
+    <div class="buttons">
+        <button class="pure-button button-xsmall" [ngClass]="{'button-success': gameComponent.currentScreen==='buildings'}" (click)="gameComponent.showScreen('buildings')" title="Gérer le campus">
+          <i class="fa fa-university"></i>
+        </button>
+        <button class="pure-button button-xsmall" [ngClass]="{'button-success': gameComponent.currentScreen==='formations'}" (click)="gameComponent.showScreen('formations')" title="Formations">
+          <i class="fa fa-book"></i>
+        </button>
+        <button class="pure-button button-xsmall" [ngClass]="{'button-success': gameComponent.currentScreen==='rh'}" (click)="gameComponent.showScreen('rh')" title="Ressources Humaines">
+          <i class="fa fa-users"></i>
+        </button>
+        <button class="pure-button button-xsmall" [ngClass]="{'button-success': gameComponent.currentScreen==='students'}" (click)="gameComponent.showScreen('students')" title="Etudiants">
+          <i class="fa fa-graduation-cap"></i>
+        </button>
+    </div>
+    <div class="actions">
+        <button class="pure-button button-xsmall" (click)="showOptionsMenu()">
+          <i class="fa fa-bars"></i>
+        </button>
+    </div>
+</div>

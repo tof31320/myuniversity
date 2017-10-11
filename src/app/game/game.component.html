@@ -1,3 +1,7 @@
-<div id="mainGame">MainGame: player:<strong>{{game.player.name}}</strong> <br/> University: <strong>{{game.university.name}}</strong></div>
-<button (click)="saveGame()">Sauvegarder</button>&nbsp;|&nbsp;
-<button (click)="quit()">Quitter</button>
+<status-bar [game]="game" [gameComponent]="this"></status-bar>
+<in-game-menu *ngIf="menuInGameVisible" [gameComponent]="this"></in-game-menu>
+
+<building-screen [gameComponent]="this" *ngIf="currentScreen==='buildings'"></building-screen>
+<rh-screen [gameComponent]="this" *ngIf="currentScreen==='rh'"></rh-screen>
+<formation-screen [gameComponent]="this" *ngIf="currentScreen==='formations'"></formation-screen>
+<student-screen [gameComponent]="this" *ngIf="currentScreen==='students'"></student-screen>

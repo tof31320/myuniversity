@@ -15,11 +15,17 @@ var app_component_1 = require("../app.component");
 var GameComponent = (function () {
     function GameComponent(gameService) {
         this.gameService = gameService;
+        this.menuInGameVisible = false;
+        this.currentScreen = 'dashboard';
     }
     GameComponent.prototype.showMainMenu = function () {
+        this.menuInGameVisible = true;
     };
     GameComponent.prototype.saveGame = function () {
         this.gameService.save(this.game);
+    };
+    GameComponent.prototype.showScreen = function (screen) {
+        this.currentScreen = screen;
     };
     GameComponent.prototype.quit = function () {
         this.app.showMenu();

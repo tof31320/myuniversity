@@ -21,7 +21,10 @@ var LoadGameComponent = (function () {
         this.gamesaves = this.gameService.getAllGameSaves();
     };
     LoadGameComponent.prototype.loadGame = function (gameSave) {
+        this.app.currentGame = gameSave.game;
+        this.gameService.setCurrentGame(gameSave.game);
         this.onGameSelection.emit(gameSave);
+        this.app.showGame();
     };
     LoadGameComponent.prototype.deleteGame = function (gameSave) {
         this.onGameDeletion.emit(gameSave);
