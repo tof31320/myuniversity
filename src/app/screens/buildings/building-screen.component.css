@@ -3,6 +3,7 @@
     border: solid 1px lightgrey;
     width: 500px;
     margin: 5px 5px 5px 25px;
+    height: 20px;
 }
 
 .type-batiment:hover {
@@ -14,4 +15,29 @@
     cursor: auto;
     /*background-color: lightcoral;*/
     color: lightgray;
+}
+.type-batiment .type-batiment-name {
+    font-weight: bold;
+    float: left;
+}
+.type-batiment .type-batiment-size {
+    float: left;
+}
+.type-batiment .type-batiment-price {
+    float: right;
+}
+
+.batiment {
+    padding: 10px 10px 10px 10px;
+    border: solid 1px lightblue;
+    width: 50%;
+}
+.batiment-title {
+    color: cadetblue;
+    font-weight: bold;
+}
+.batiment-title:hover {
+    cursor: pointer;
+    background-color: lightblue;
+    color: white;
 }

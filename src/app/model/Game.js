@@ -2,10 +2,17 @@
 var Player_1 = require("../model/Player");
 var University_1 = require("../model/University");
 var Batiment_1 = require("../model/Batiment");
+var GamePhase;
+(function (GamePhase) {
+    GamePhase[GamePhase["PRE_RENTREE"] = 'Pré-rentrée'] = "PRE_RENTREE";
+    GamePhase[GamePhase["EN_COURS"] = 'En cours'] = "EN_COURS";
+})(GamePhase || (GamePhase = {}));
+;
 var Game = (function () {
     function Game() {
         this.player = null;
         this.university = null;
+        this.phase = GamePhase.PRE_RENTREE;
         this.player = new Player_1.Player();
         this.university = new University_1.University();
     }

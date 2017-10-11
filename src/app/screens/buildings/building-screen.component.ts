@@ -15,6 +15,8 @@ export class BuildingScreenComponent implements OnInit {
   @Input() gameComponent: GameComponent;
 
   batiments: Batiment[];
+  batimentSelected: Batiment;
+
   typesBatiment: TypeBatiment[] = new Array();
 
   buildFormVisible: boolean = false;
@@ -36,6 +38,10 @@ export class BuildingScreenComponent implements OnInit {
 
   closeBuildForm(){
     this.buildFormVisible = false;
+  }
+
+  selectBatiment(batiment: Batiment){
+    this.batimentSelected = batiment;
   }
 
   build(type: TypeBatiment){

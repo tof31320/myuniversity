@@ -3,9 +3,15 @@ import { University } from '../model/University';
 import { TypeBatiment } from '../model/TypeBatiment';
 import { Batiment } from '../model/Batiment';
 
+enum GamePhase {
+  PRE_RENTREE = 'Pré-rentrée',
+  EN_COURS = 'En cours'
+};
+
 export class Game {
   player: Player = null;
   university: University = null;
+  phase: GamePhase = GamePhase.PRE_RENTREE;
 
   public static fromJSON(json: Object): Game {
     let g: Game = new Game();

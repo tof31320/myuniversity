@@ -30,6 +30,9 @@ var BuildingScreenComponent = (function () {
     BuildingScreenComponent.prototype.closeBuildForm = function () {
         this.buildFormVisible = false;
     };
+    BuildingScreenComponent.prototype.selectBatiment = function (batiment) {
+        this.batimentSelected = batiment;
+    };
     BuildingScreenComponent.prototype.build = function (type) {
         if (!this.gameComponent.game.canBuild(type)) {
             return;
