@@ -12,6 +12,8 @@ var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 require("rxjs/add/operator/map");
 var TypeBatiment_1 = require("./TypeBatiment");
+var Domaine_1 = require("./Domaine");
+var ModuleFormation_1 = require("./ModuleFormation");
 var ServiceModel = (function () {
     function ServiceModel(http) {
         this.http = http;
@@ -26,6 +28,28 @@ var ServiceModel = (function () {
             }
             console.log(types);
             return types;
+        });
+    };
+    ServiceModel.prototype.getAllDomaines = function () {
+        return this.http.get('data/domaines-modules.json')
+            .map(function (resp) {
+            var domaines = new Array();
+            var json = resp.json().domaines;
+            for (var i = 0; i < json.length; i++) {
+                domaines.push(Domaine_1.Domaine.fromJSON(json[i]));
+            }
+            return domaines;
+        });
+    };
+    ServiceModel.prototype.getAllModulesFormation = function () {
+        return this.http.get('data/domaines-module.json')
+            .map(function (resp) {
+            var modules = new Array();
+            var json = resp.json().modules;
+            for (var i = 0; i < json.length; i++) {
+                modules.push(ModuleFormation_1.ModuleFormation.fromJSON(json[i]));
+            }
+            return modules;
         });
     };
     return ServiceModel;

@@ -10,9 +10,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var game_component_1 = require("../../game/game.component");
+var ServiceModel_service_1 = require("../../model/ServiceModel.service");
 var FormationScreenComponent = (function () {
-    function FormationScreenComponent() {
+    function FormationScreenComponent(serviceModel) {
+        this.serviceModel = serviceModel;
+        this.domaines = new Array();
+        this.modules = new Array();
     }
+    FormationScreenComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.serviceModel.getAllDomaines().subscribe(function (domaines) { return _this.domaines = domaines; });
+        this.serviceModel.getAllModulesFormation().subscribe(function (modules) { return _this.modules = modules; });
+    };
     return FormationScreenComponent;
 }());
 __decorate([
@@ -22,8 +31,11 @@ __decorate([
 FormationScreenComponent = __decorate([
     core_1.Component({
         selector: 'formation-screen',
-        templateUrl: './formation-screen.component.html'
-    })
+        providers: [ServiceModel_service_1.ServiceModel],
+        templateUrl: './formation-screen.component.html',
+        styleUrls: ['./formation-screen.component.css']
+    }),
+    __metadata("design:paramtypes", [ServiceModel_service_1.ServiceModel])
 ], FormationScreenComponent);
 exports.FormationScreenComponent = FormationScreenComponent;
 //# sourceMappingURL=formation-screen.component.js.map

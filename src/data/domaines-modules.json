@@ -1,0 +1,15 @@
+{
+    "domaines": [{
+        "id": 1,
+        "nom": "Domaine 1"
+    },
+    {
+        "id": 2,
+        "nom": "Domaine 2"
+    },
+{
+    "id": 3,
+    "nom": "Domaine 3"
+}],
+    "modules": []
+}

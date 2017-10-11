@@ -3,5 +3,21 @@
 <button class="pure-button" (click)="showFormationForm()"><i class="fa fa-book"></i>&nbsp;Créer une nouvelle formation ...</button>
 
 <div id="formationForm">
-    
+    <form name="frmFormation">
+        <fieldset>        
+          <input id="intitule" class="pure-input-1" type="text" size="50" placeholder="Intitulé de la formation" autofocus />
+        <br/>
+        <div id="domaines">
+            Domaine:
+            <div class="domaine" *ngFor="let d of domaines"><input type="radio" id="domaine-{{d.id}}" name="domaine" value="" />&nbsp;{{d.nom}}</div>
+        </div>
+        <br/>
+        <div id="modules">
+            Modules:
+
+        </div>
+        <br/>
+          <button type="submit" class="pure-button">Créer</button>
+        </fieldset>
+    </form>
 </div>
