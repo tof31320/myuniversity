@@ -5,7 +5,8 @@ import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'game',
-  templateUrl: './game.component.html'
+  templateUrl: './game.component.html',
+  styleUrls: [ './game.component.css' ]
 })
 export class GameComponent {
 

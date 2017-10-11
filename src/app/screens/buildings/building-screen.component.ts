@@ -39,6 +39,9 @@ export class BuildingScreenComponent implements OnInit {
   }
 
   build(type: TypeBatiment){
+    if(!this.gameComponent.game.canBuild(type)){
+      return;
+    }
     this.gameComponent.game.build(type);
     this.gameComponent.sync();
 

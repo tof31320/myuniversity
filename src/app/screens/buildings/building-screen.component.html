@@ -1,5 +1,5 @@
 <h1>Batiments</h1>
-<button (click)="showBuildForm()" class="pure-button">Construire...</button>
+<button (click)="showBuildForm()" class="pure-button"><i class="fa fa-building" aria-hidden="true"></i>Construire...</button>
 <div id="buildForm" *ngIf="buildFormVisible">
     <div class="type-batiment" *ngFor="let type of typesBatiment" (click)="build(type)" [ngClass]="{'disabled':!gameComponent.game.canBuild(type)}">
         <div class="type-batiment-name">{{type.nom}}</div>

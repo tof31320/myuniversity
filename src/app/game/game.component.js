@@ -46,7 +46,8 @@ __decorate([
 GameComponent = __decorate([
     core_1.Component({
         selector: 'game',
-        templateUrl: './game.component.html'
+        templateUrl: './game.component.html',
+        styleUrls: ['./game.component.css']
     }),
     __metadata("design:paramtypes", [game_service_1.GameService])
 ], GameComponent);

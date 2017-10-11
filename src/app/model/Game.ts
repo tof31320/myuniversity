@@ -26,7 +26,8 @@ export class Game {
     && this.university.usedSpace() + type.size <= this.university.areaSize;
   }
 
-  build(type: TypeBatiment){
+  build(type: TypeBatiment){    
+
     let bat = new Batiment();
     bat.id = Date.now();
     bat.nom = type.nom;

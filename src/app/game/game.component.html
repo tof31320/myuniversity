@@ -1,7 +1,8 @@
 <status-bar [game]="game" [gameComponent]="this"></status-bar>
 <in-game-menu *ngIf="menuInGameVisible" [gameComponent]="this"></in-game-menu>
-
-<building-screen [gameComponent]="this" *ngIf="currentScreen==='buildings'"></building-screen>
-<rh-screen [gameComponent]="this" *ngIf="currentScreen==='rh'"></rh-screen>
-<formation-screen [gameComponent]="this" *ngIf="currentScreen==='formations'"></formation-screen>
-<student-screen [gameComponent]="this" *ngIf="currentScreen==='students'"></student-screen>
+<div id="gameScreen">
+    <building-screen [gameComponent]="this" *ngIf="currentScreen==='buildings'"></building-screen>
+    <rh-screen [gameComponent]="this" *ngIf="currentScreen==='rh'"></rh-screen>
+    <formation-screen [gameComponent]="this" *ngIf="currentScreen==='formations'"></formation-screen>
+    <student-screen [gameComponent]="this" *ngIf="currentScreen==='students'"></student-screen>
+</div>

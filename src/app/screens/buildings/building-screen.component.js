@@ -31,6 +31,9 @@ var BuildingScreenComponent = (function () {
         this.buildFormVisible = false;
     };
     BuildingScreenComponent.prototype.build = function (type) {
+        if (!this.gameComponent.game.canBuild(type)) {
+            return;
+        }
         this.gameComponent.game.build(type);
         this.gameComponent.sync();
         this.closeBuildForm();

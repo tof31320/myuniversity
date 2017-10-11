@@ -12,5 +12,6 @@
 
 .type-batiment.disabled {
     cursor: auto;
-    background-color: lightcoral;
+    /*background-color: lightcoral;*/
+    color: lightgray;
 }
