@@ -42,7 +42,7 @@ export class ServiceModel {
   }
 
   getAllModulesFormation(){
-    return this.http.get('data/domaines-module.json')
+    return this.http.get('data/domaines-modules.json')
       .map(resp => {
         let modules: ModuleFormation[] = new Array();
         let json = resp.json().modules;
@@ -50,7 +50,7 @@ export class ServiceModel {
         for(let i = 0; i < json.length; i++){
           modules.push(ModuleFormation.fromJSON(json[i]));
         }
-        
+
         return modules;
       });
   }

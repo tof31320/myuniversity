@@ -1,15 +1,125 @@
 {
     "domaines": [{
-        "id": 1,
-        "nom": "Domaine 1"
-    },
-    {
-        "id": 2,
-        "nom": "Domaine 2"
-    },
-{
-    "id": 3,
-    "nom": "Domaine 3"
-}],
-    "modules": []
+            "id": 1,
+            "nom": "Domaine 1"
+        },
+        {
+            "id": 2,
+            "nom": "Domaine 2"
+        },
+        {
+            "id": 3,
+            "nom": "Domaine 3"
+        }
+    ],
+    "modules": [{
+            "id": "59e0bb56a6bff9738a1330bd",
+            "nom": "Module 0"
+        },
+        {
+            "id": "59e0bb56ee9eb6a87d58f7aa",
+            "nom": "Module 1"
+        },
+        {
+            "id": "59e0bb56a60fb0e46de5f532",
+            "nom": "Module 2"
+        },
+        {
+            "id": "59e0bb569961ec16ea80fe33",
+            "nom": "Module 3"
+        },
+        {
+            "id": "59e0bb560fc74636463e00e0",
+            "nom": "Module 4"
+        },
+        {
+            "id": "59e0bb5605972bb30a45e02b",
+            "nom": "Module 5"
+        },
+        {
+            "id": "59e0bb56ea914945969a9d5a",
+            "nom": "Module 6"
+        },
+        {
+            "id": "59e0bb5620219cefa4562714",
+            "nom": "Module 7"
+        },
+        {
+            "id": "59e0bb565b80ae4371874ebe",
+            "nom": "Module 8"
+        },
+        {
+            "id": "59e0bb56b2319b70065f5a93",
+            "nom": "Module 9"
+        },
+        {
+            "id": "59e0bb56bbb1a22280ab8dfc",
+            "nom": "Module 10"
+        },
+        {
+            "id": "59e0bb56b84f566a4654f357",
+            "nom": "Module 11"
+        },
+        {
+            "id": "59e0bb5699dec671f97e479c",
+            "nom": "Module 12"
+        },
+        {
+            "id": "59e0bb56d9c06c4b4616243b",
+            "nom": "Module 13"
+        },
+        {
+            "id": "59e0bb56bbb24850406f1c04",
+            "nom": "Module 14"
+        },
+        {
+            "id": "59e0bb56df83f45804dd9dd8",
+            "nom": "Module 15"
+        },
+        {
+            "id": "59e0bb568d3c1746389111d3",
+            "nom": "Module 16"
+        },
+        {
+            "id": "59e0bb5681449daa952fdecb",
+            "nom": "Module 17"
+        },
+        {
+            "id": "59e0bb56ff9bdcf7fe68fb8e",
+            "nom": "Module 18"
+        },
+        {
+            "id": "59e0bb56b9f90195dbb9ff48",
+            "nom": "Module 19"
+        },
+        {
+            "id": "59e0bb56adaea7966f3c6e32",
+            "nom": "Module 20"
+        },
+        {
+            "id": "59e0bb56f3b51ad366945fc8",
+            "nom": "Module 21"
+        },
+        {
+            "id": "59e0bb560469b5d3f9ab801d",
+            "nom": "Module 22"
+        },
+        {
+            "id": "59e0bb568bef41171b07efa6",
+            "nom": "Module 23"
+        },
+        {
+            "id": "59e0bb56f18737ede92ac5bd",
+            "nom": "Module 24"
+        },
+        {
+            "id": "59e0bb564df145ec6f73f5d2",
+            "nom": "Module 25"
+        },
+        {
+            "id": "59e0bb56ff8e7567611224f3",
+            "nom": "Module 26"
+        }
+    ]
+
 }

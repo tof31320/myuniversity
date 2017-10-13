@@ -4,8 +4,8 @@ var University_1 = require("../model/University");
 var Batiment_1 = require("../model/Batiment");
 var GamePhase;
 (function (GamePhase) {
-    GamePhase[GamePhase["PRE_RENTREE"] = 'Pré-rentrée'] = "PRE_RENTREE";
-    GamePhase[GamePhase["EN_COURS"] = 'En cours'] = "EN_COURS";
+    GamePhase[GamePhase["PRE_RENTREE"] = 0] = "PRE_RENTREE";
+    GamePhase[GamePhase["EN_COURS"] = 1] = "EN_COURS";
 })(GamePhase || (GamePhase = {}));
 ;
 var Game = (function () {

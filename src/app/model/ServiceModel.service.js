@@ -42,7 +42,7 @@ var ServiceModel = (function () {
         });
     };
     ServiceModel.prototype.getAllModulesFormation = function () {
-        return this.http.get('data/domaines-module.json')
+        return this.http.get('data/domaines-modules.json')
             .map(function (resp) {
             var modules = new Array();
             var json = resp.json().modules;

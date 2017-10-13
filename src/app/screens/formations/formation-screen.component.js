@@ -11,16 +11,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var game_component_1 = require("../../game/game.component");
 var ServiceModel_service_1 = require("../../model/ServiceModel.service");
+var Formation_1 = require("../../model/Formation");
 var FormationScreenComponent = (function () {
     function FormationScreenComponent(serviceModel) {
         this.serviceModel = serviceModel;
         this.domaines = new Array();
         this.modules = new Array();
+        this.formationSelected = null;
     }
     FormationScreenComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.serviceModel.getAllDomaines().subscribe(function (domaines) { return _this.domaines = domaines; });
         this.serviceModel.getAllModulesFormation().subscribe(function (modules) { return _this.modules = modules; });
+        this.formationSelected = new Formation_1.Formation();
+    };
+    FormationScreenComponent.prototype.selectDomaine = function (domaine) {
+        this.formationSelected.domaine = domaine;
+    };
+    FormationScreenComponent.prototype.toggleModule = function (m) {
+        if (this.formationSelected.containsModule(m)) {
+            this.formationSelected.removeModule(m);
+        }
+        else {
+            this.formationSelected.addModule(m);
+        }
     };
     return FormationScreenComponent;
 }());

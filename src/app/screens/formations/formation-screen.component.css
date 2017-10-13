@@ -1,7 +1,42 @@
+#domaines {
+    width: 100%;
+}
+
+#modules {
+    width: 100%;
+}
+
 .domaine {
     padding: 10px 10px 10px 10px;
     margin: 5px 5px 5px 5px;
-    background-color: lightgreen;
     width: 200px;
     float: left;
-} 
+    border: 1px solid lightblue;
+    border-radius: 5px;
+}
+
+.domaine:hover {
+    cursor: pointer;
+}
+
+.domaine-selected {
+    background-color: lightblue;
+    color: white;
+}
+
+.module {
+    padding: 5px 5px 5px 5px;
+    margin: 5px 5px 5px 5px;
+    float: left;
+    border: 1px solid limegreen;
+    border-radius: 5px;
+}
+
+.module:hover {
+    cursor: pointer;
+}
+
+.module-selected {
+    background-color: lightgreen;
+    color: white;
+}

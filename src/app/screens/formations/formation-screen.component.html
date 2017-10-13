@@ -4,20 +4,24 @@
 
 <div id="formationForm">
     <form name="frmFormation">
-        <fieldset>        
-          <input id="intitule" class="pure-input-1" type="text" size="50" placeholder="Intitulé de la formation" autofocus />
-        <br/>
-        <div id="domaines">
-            Domaine:
-            <div class="domaine" *ngFor="let d of domaines"><input type="radio" id="domaine-{{d.id}}" name="domaine" value="" />&nbsp;{{d.nom}}</div>
-        </div>
-        <br/>
-        <div id="modules">
-            Modules:
-
-        </div>
-        <br/>
-          <button type="submit" class="pure-button">Créer</button>
+        <fieldset>
+            <input id="intitule" class="pure-input-1" type="text" size="50" placeholder="Intitulé de la formation" autofocus />
+            <br/> Domaine:
+            <div id="domaines">
+                <div class="domaine" [ngClass]="{'domaine-selected':formationSelected && formationSelected.domaine && formationSelected.domaine === d}" (click)="selectDomaine(d)" *ngFor="let d of domaines">
+                    <input type="radio" id="domaine-{{d.id}}" name="domaine" value="" [checked]="formationSelected.domaine && formationSelected.domaine === d" />&nbsp;{{d.nom}}
+                </div>
+            </div>
+            <br/>
+            <br/>
+            <br/> Modules:<br/>
+            <div id="modules">
+                <div class="module" *ngFor="let m of modules" (click)="toggleModule(m)" [ngClass]="{'module-selected':formationSelected && formationSelected.containsModule(m)}">
+                    <input type="checkbox" id="module-{{m.id}}" name="module" value="" />&nbsp;{{m.nom}}
+                </div>
+            </div>
+            <br/>
+            <button type="submit" class="pure-button">Créer</button>
         </fieldset>
     </form>
 </div>

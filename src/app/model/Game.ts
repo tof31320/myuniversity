@@ -4,8 +4,8 @@ import { TypeBatiment } from '../model/TypeBatiment';
 import { Batiment } from '../model/Batiment';
 
 enum GamePhase {
-  PRE_RENTREE = 'Pré-rentrée',
-  EN_COURS = 'En cours'
+  PRE_RENTREE,
+  EN_COURS
 };
 
 export class Game {
@@ -32,7 +32,7 @@ export class Game {
     && this.university.usedSpace() + type.size <= this.university.areaSize;
   }
 
-  build(type: TypeBatiment){    
+  build(type: TypeBatiment){
 
     let bat = new Batiment();
     bat.id = Date.now();
