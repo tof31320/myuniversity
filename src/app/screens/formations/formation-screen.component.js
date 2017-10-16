@@ -23,6 +23,9 @@ var FormationScreenComponent = (function () {
         var _this = this;
         this.serviceModel.getAllDomaines().subscribe(function (domaines) { return _this.domaines = domaines; });
         this.serviceModel.getAllModulesFormation().subscribe(function (modules) { return _this.modules = modules; });
+        this.formations = this.gameComponent.game.university.formations;
+    };
+    FormationScreenComponent.prototype.showFormationForm = function () {
         this.formationSelected = new Formation_1.Formation();
     };
     FormationScreenComponent.prototype.selectDomaine = function (domaine) {
@@ -36,6 +39,22 @@ var FormationScreenComponent = (function () {
             this.formationSelected.addModule(m);
         }
     };
+    FormationScreenComponent.prototype.saveFormation = function () {
+        if (this.gameComponent.game.saveFormation(this.formationSelected)) {
+            this.formationSelected = null;
+        }
+        this.gameComponent.sync();
+    };
+    FormationScreenComponent.prototype.isFormValid = function () {
+        var ret = true;
+        ret = ret && this.formationSelected.intitule != '';
+        ret = ret && this.formationSelected.domaine != null;
+        ret = ret && this.formationSelected.modules.length >= this.formationSelected.domaine.nbModulesMin;
+        return ret;
+    };
+    FormationScreenComponent.prototype.cancelEdit = function () {
+        this.formationSelected = null;
+    };
     return FormationScreenComponent;
 }());
 __decorate([
@@ -47,7 +66,7 @@ FormationScreenComponent = __decorate([
         selector: 'formation-screen',
         providers: [ServiceModel_service_1.ServiceModel],
         templateUrl: './formation-screen.component.html',
-        styleUrls: ['./formation-screen.component.css']
+        styleUrls: ['css/buttons.css', './formation-screen.component.css']
     }),
     __metadata("design:paramtypes", [ServiceModel_service_1.ServiceModel])
 ], FormationScreenComponent);

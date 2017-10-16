@@ -3,6 +3,8 @@ var Domaine = (function () {
     function Domaine() {
         this.id = 0;
         this.nom = '';
+        this.nbModulesMin = 0;
+        this.nbModulesMax = 0;
     }
     Domaine.fromJSON = function (json) {
         var d = new Domaine();

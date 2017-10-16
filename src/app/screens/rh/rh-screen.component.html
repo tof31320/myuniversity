@@ -1,1 +1,7 @@
 <h1>R.H.</h1>
+
+<button class="pure-button" (click)="openRecrutement()"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;Recruter...</button>
+
+<div class="alert alert-warning"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Vous n'avez aucun employé dans votre université !</div>
+
+<person-selection *ngIf="showRecrutement" [employees]="otherEmployees"></person-selection>

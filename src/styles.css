@@ -12,5 +12,23 @@ h1 {
     color: orange;
 }
 
+.alert {
+    padding: 10px 10px 10px 10px;
+    text-align: left;    
+    font-weight: bold;
+}
+.alert-info {
+    color: blue;
+}
+.alert-success {
+    color: green;
+}
+.alert-error {
+    color: red;
+}
+.alert-warning {
+    color: orange;
+}
+
 
 /* Modal */

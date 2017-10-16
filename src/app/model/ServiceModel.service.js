@@ -52,6 +52,32 @@ var ServiceModel = (function () {
             return modules;
         });
     };
+    ServiceModel.prototype.getAllLastnames = function () {
+        return this.http.get('data/names.json')
+            .map(function (resp) { return resp.json().lastnames; });
+    };
+    ServiceModel.prototype.getAllFirstnames = function (genre) {
+        return this.http.get('data/names.json')
+            .map(function (resp) {
+            if (genre === 'M') {
+                return resp.json().firstnames.males;
+            }
+            else {
+                return resp.json().firstnames.females;
+            }
+        });
+    };
+    ServiceModel.prototype.getAllAvatars = function (genre) {
+        return this.http.get('data/names.json')
+            .map(function (resp) {
+            if (genre === 'M') {
+                return resp.json().avatars.males;
+            }
+            else {
+                return resp.json().avatars.females;
+            }
+        });
+    };
     return ServiceModel;
 }());
 ServiceModel = __decorate([

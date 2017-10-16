@@ -10,9 +10,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var game_component_1 = require("../../game/game.component");
+var IA_1 = require("../../model/IA");
 var RHScreenComponent = (function () {
-    function RHScreenComponent() {
+    function RHScreenComponent(ia) {
+        this.ia = ia;
+        this.otherEmployees = new Array();
+        this.showRecrutement = false;
     }
+    RHScreenComponent.prototype.ngOnInit = function () {
+        this.employees = this.gameComponent.game.university.employees;
+        this.otherEmployees = this.ia.createPersons(15, { personType: 'employee' });
+        console.log(this.otherEmployees);
+    };
+    RHScreenComponent.prototype.openRecrutement = function () {
+        this.showRecrutement = true;
+    };
+    RHScreenComponent.prototype.closeRecrutement = function () {
+        this.showRecrutement = false;
+    };
     return RHScreenComponent;
 }());
 __decorate([
@@ -22,8 +37,10 @@ __decorate([
 RHScreenComponent = __decorate([
     core_1.Component({
         selector: 'rh-screen',
-        templateUrl: './rh-screen.component.html'
-    })
+        templateUrl: './rh-screen.component.html',
+        providers: [IA_1.IAService]
+    }),
+    __metadata("design:paramtypes", [IA_1.IAService])
 ], RHScreenComponent);
 exports.RHScreenComponent = RHScreenComponent;
 //# sourceMappingURL=rh-screen.component.js.map

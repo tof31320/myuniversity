@@ -8,7 +8,7 @@
     </div>
     <button class="pure-button button-xsmall" (click)="closeBuildForm()">Annuler</button>
 </div>
-<div *ngIf="!batiments || batiments.length===0">Vous n'avez aucun batiment</div>
+<div class="alert alert-warning" *ngIf="!batiments || batiments.length===0"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Vous n'avez aucun batiment</div>
 <div class="batiments" *ngIf="batiments && batiments.length>0">
     <div class="batiment" *ngFor="let b of batiments">        
         <div class="batiment-title" (click)="selectBatiment(b)">{{b.nom}}</div>

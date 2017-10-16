@@ -2,26 +2,61 @@
 
 <button class="pure-button" (click)="showFormationForm()"><i class="fa fa-book"></i>&nbsp;Créer une nouvelle formation ...</button>
 
-<div id="formationForm">
-    <form name="frmFormation">
+<div id="formationForm" *ngIf="formationSelected">
+    <form name="frmFormation" (ngSubmit)="saveFormation(editFormationForm)" #editFormationForm="ngForm" novalidate>
         <fieldset>
-            <input id="intitule" class="pure-input-1" type="text" size="50" placeholder="Intitulé de la formation" autofocus />
-            <br/> Domaine:
-            <div id="domaines">
-                <div class="domaine" [ngClass]="{'domaine-selected':formationSelected && formationSelected.domaine && formationSelected.domaine === d}" (click)="selectDomaine(d)" *ngFor="let d of domaines">
-                    <input type="radio" id="domaine-{{d.id}}" name="domaine" value="" [checked]="formationSelected.domaine && formationSelected.domaine === d" />&nbsp;{{d.nom}}
-                </div>
+            <div class="pure-control-group">
+                <input id="intitule"
+                 [(ngModel)]="formationSelected.intitule"
+                  name="intituleF" 
+                  class="pure-input-1"
+                  type="text" size="50" 
+                  placeholder="Intitulé de la formation" 
+                  autofocus />
             </div>
-            <br/>
-            <br/>
-            <br/> Modules:<br/>
-            <div id="modules">
-                <div class="module" *ngFor="let m of modules" (click)="toggleModule(m)" [ngClass]="{'module-selected':formationSelected && formationSelected.containsModule(m)}">
-                    <input type="checkbox" id="module-{{m.id}}" name="module" value="" />&nbsp;{{m.nom}}
-                </div>
-            </div>
-            <br/>
-            <button type="submit" class="pure-button">Créer</button>
         </fieldset>
+        <fieldset>
+            Domaine:
+            <div id="domaines" class="pure-control-group">
+                <div class="domaine" [ngClass]="{'domaine-selected':formationSelected && formationSelected.domaine && formationSelected.domaine === d}" (click)="selectDomaine(d)" *ngFor="let d of domaines">
+                    <input type="radio" #domaineSelection required id="domaine-{{d.id}}" name="domaine" value="{{d.id}}}" [checked]="formationSelected.domaine && formationSelected.domaine === d" />&nbsp;{{d.nom}}
+                </div>
+            </div>
+        </fieldset>    
+        <fieldset>
+            Modules:
+            <div id="modules" class="pure-control-group">
+                <div class="module" *ngFor="let m of modules" (click)="toggleModule(m)" [ngClass]="{'module-selected':formationSelected && formationSelected.containsModule(m)}">
+                    <input type="checkbox" id="module-{{m.id}}" name="module" value="{{m.id}}" [checked]="formationSelected && formationSelected.containsModule(m)" />&nbsp;{{m.nom}}
+                </div>
+            </div>
+        </fieldset>           
+        <fieldset>
+            <div id="actions" class="pure-control-group">
+                <button type="button" class="pure-button" (click)="cancelEdit()">Annuler</button>
+                <button type="submit" class="pure-button" [disabled]="!isFormValid()">Créer</button>
+            </div> 
+        </fieldset> 
     </form>
+</div>
+
+<div class="alert alert-warning" *ngIf="formations.length===0"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Vous n'avez aucune formation dans votre université !</div>
+<div id="allFormations">
+    
+    <div class="formation" *ngFor="let f of formations">
+        <div class="formation-name"><i class="fa fa-book"></i>&nbsp;{{f.intitule}}</div>
+        <div class="formation-buttons">
+            <button class="pure-button button-secondary button-small"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+            <button class="pure-button button-warning button-small"><i class="fa fa-times" aria-hidden="true"></i></button>
+        </div>
+        <div class="formation-details">
+            Domaine: <span class="formation-details-domaine">{{f.domaine.nom}}</span>
+            <br/>
+            Modules: <br/>
+            <div class="formation-details-module" *ngFor="let m of f.modules">
+                {{m.nom}} : 
+            </div>
+        </div>
+    </div>
+    
 </div>

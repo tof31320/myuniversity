@@ -35,6 +35,20 @@ var Game = (function () {
         this.player.money -= bat.type.price;
         console.log(this.university);
     };
+    Game.prototype.saveFormation = function (formation) {
+        if (formation.id === 0) {
+            // new
+            formation.id = Date.now();
+            this.university.formations.push(formation);
+        }
+        else {
+            var index = this.university.formations.indexOf(formation);
+            if (index >= 0) {
+                this.university.formations[index] = formation;
+            }
+        }
+        return true;
+    };
     return Game;
 }());
 exports.Game = Game;

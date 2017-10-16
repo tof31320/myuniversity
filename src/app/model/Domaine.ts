@@ -1,9 +1,11 @@
 export class Domaine {
     id: number = 0;
     nom: string = '';
-
-    static fromJSON(json: Object): Domaine {
-        let d: Domaine = new Domaine();
+    nbModulesMin: number = 0;
+    nbModulesMax: number = 0;
+    
+    static fromJSON(json: Object){
+        let d:Domaine = new Domaine();
         Object.assign(d, json);
         return d;
     }

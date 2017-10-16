@@ -2,6 +2,8 @@ import { Player } from '../model/Player';
 import { University } from '../model/University';
 import { TypeBatiment } from '../model/TypeBatiment';
 import { Batiment } from '../model/Batiment';
+import { Formation } from '../model/Formation';
+import { ModuleFormation } from '../model/ModuleFormation';
 
 enum GamePhase {
   PRE_RENTREE,
@@ -44,5 +46,19 @@ export class Game {
     this.player.money -= bat.type.price;
 
     console.log(this.university);
+  }
+
+  saveFormation(formation: Formation): boolean {
+    if(formation.id === 0){
+      // new
+      formation.id = Date.now();
+      this.university.formations.push(formation);
+    }else{
+      let index = this.university.formations.indexOf(formation);
+      if(index >= 0){
+        this.university.formations[index] = formation;
+      }
+    }
+    return true;
   }
 }

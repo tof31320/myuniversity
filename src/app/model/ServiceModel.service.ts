@@ -54,4 +54,31 @@ export class ServiceModel {
         return modules;
       });
   }
+
+  getAllLastnames(){
+    return this.http.get('data/names.json')
+      .map(resp => resp.json().lastnames);
+  }
+
+  getAllFirstnames(genre: string){
+    return this.http.get('data/names.json')
+      .map(resp => {
+        if(genre === 'M'){
+          return resp.json().firstnames.males;
+        }else{
+          return resp.json().firstnames.females;
+        }
+      });
+  }
+
+  getAllAvatars(genre: string){
+    return this.http.get('data/names.json')
+      .map(resp => {
+        if(genre === 'M'){
+          return resp.json().avatars.males;
+        }else{
+          return resp.json().avatars.females;
+        }
+      });
+  }
 }

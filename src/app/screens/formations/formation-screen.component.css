@@ -1,18 +1,19 @@
 #domaines {
-    width: 100%;
+    width: 100%;    
+    float: none;
 }
 
 #modules {
     width: 100%;
+    float: none;
 }
 
 .domaine {
     padding: 10px 10px 10px 10px;
-    margin: 5px 5px 5px 5px;
-    width: 200px;
-    float: left;
+    margin: 5px 5px 5px 5px;        
     border: 1px solid lightblue;
     border-radius: 5px;
+    float: left;
 }
 
 .domaine:hover {
@@ -26,10 +27,10 @@
 
 .module {
     padding: 5px 5px 5px 5px;
-    margin: 5px 5px 5px 5px;
-    float: left;
+    margin: 5px 5px 5px 5px;    
     border: 1px solid limegreen;
-    border-radius: 5px;
+    border-radius: 5px;    
+    float: left;    
 }
 
 .module:hover {
@@ -39,4 +40,39 @@
 .module-selected {
     background-color: lightgreen;
     color: white;
+}
+
+.actions {
+    float: none;
+}
+
+.formation {
+    width: 80%;
+    border: solid 1px lightblue;
+    border-radius: 5px;
+    padding: 10px 10px 10px 10px;
+    min-height: 50px;
+}
+
+.formation-name {    
+    font-weight: bold;
+    width: 50%;
+}
+.formation-buttons {
+    float: right;
+}
+.formation-details {
+    float: none;
+}
+
+.formation-details-domaine {
+    font-weight: bold;
+    color: blueviolet;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+.formation-details-module{
+    list-style: circle;
+    font-weight: bolder;
+    color: brown;
 }

@@ -1,15 +1,21 @@
 {
     "domaines": [{
             "id": 1,
-            "nom": "Domaine 1"
+            "nom": "Domaine 1",
+            "nbModulesMin": 2,
+            "nbModulesMax": 2
         },
         {
             "id": 2,
-            "nom": "Domaine 2"
+            "nom": "Domaine 2",
+            "nbModulesMin": 2,
+            "nbModulesMax": 3
         },
         {
             "id": 3,
-            "nom": "Domaine 3"
+            "nom": "Domaine 3",
+            "nbModulesMin": 3,
+            "nbModulesMax": 5
         }
     ],
     "modules": [{

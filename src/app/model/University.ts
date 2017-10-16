@@ -1,10 +1,14 @@
 import { Batiment } from './Batiment';
+import { Formation } from './Formation';
+import { Employee } from './Employee';
 
 export class University {
   name: string = '';
   areaSize: number = 20;
 
   batiments: Batiment[] = new Array();
+  formations: Formation[] = new Array();
+  employees: Employee[] = new Array();
 
   static fromJSON(json: Object): University {
     let u: University = new University();
@@ -15,6 +19,18 @@ export class University {
       let b: Batiment = Batiment.fromJSON(json['batiments'][i]);
 
       u.batiments.push(b);
+    }
+
+    u.formations = new Array();
+    for(let i = 0; i < json['formations'].length; i++){
+      let f: Formation = Formation.fromJSON(json['formations'][i]);
+      u.formations.push(f);
+    }
+
+    u.employees = new Array();
+    for(let i = 0; i < json['employees'].length; i++){
+      let e: Employee = Employee.fromJSON(json['employees'][i]);
+      u.employees.push(e);
     }
     return u;
   }
