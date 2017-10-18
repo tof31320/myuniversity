@@ -18,6 +18,8 @@ var FormationScreenComponent = (function () {
         this.domaines = new Array();
         this.modules = new Array();
         this.formationSelected = null;
+        this.personSelectionDialogOpen = false;
+        this.moduleSelected = null;
     }
     FormationScreenComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -27,6 +29,7 @@ var FormationScreenComponent = (function () {
     };
     FormationScreenComponent.prototype.showFormationForm = function () {
         this.formationSelected = new Formation_1.Formation();
+        console.log(this.formationSelected);
     };
     FormationScreenComponent.prototype.selectDomaine = function (domaine) {
         this.formationSelected.domaine = domaine;
@@ -36,7 +39,7 @@ var FormationScreenComponent = (function () {
             this.formationSelected.removeModule(m);
         }
         else {
-            this.formationSelected.addModule(m);
+            this.formationSelected.addModule(m.clone());
         }
     };
     FormationScreenComponent.prototype.saveFormation = function () {
@@ -54,6 +57,30 @@ var FormationScreenComponent = (function () {
     };
     FormationScreenComponent.prototype.cancelEdit = function () {
         this.formationSelected = null;
+    };
+    FormationScreenComponent.prototype.editFormation = function (formation) {
+        this.formationSelected = formation.clone();
+    };
+    FormationScreenComponent.prototype.closeFormation = function (formation) {
+        this.gameComponent.game.closeFormation(formation);
+        this.gameComponent.sync();
+    };
+    FormationScreenComponent.prototype.onHVolumeChange = function (module) {
+        console.log(module);
+    };
+    FormationScreenComponent.prototype.openProfessorsSelectionDialog = function (module) {
+        this.moduleSelected = module;
+        this.personSelectionDialogOpen = true;
+    };
+    FormationScreenComponent.prototype.selectPerson = function (emp) {
+        if (this.moduleSelected != null) {
+            this.moduleSelected.teachers.push(emp);
+        }
+        this.moduleSelected = null;
+        this.personSelectionDialogOpen = false;
+    };
+    FormationScreenComponent.prototype.removeProfessorFromModule = function (module, emp) {
+        module.removeTeacher(emp);
     };
     return FormationScreenComponent;
 }());

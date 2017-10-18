@@ -17,9 +17,12 @@
           <i class="fa fa-graduation-cap"></i>
         </button>
     </div>
-    <div class="actions">  
+
+    <div class="actions">
         <button class="pure-button button-xsmall" (click)="showOptionsMenu()">
           <i class="fa fa-bars"></i>
         </button>
     </div>
+
+    <game-time [gameComponent]="gameComponent" (onTick)="gameComponent.game.tick()"></game-time>
 </div>

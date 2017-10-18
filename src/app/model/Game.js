@@ -2,6 +2,7 @@
 var Player_1 = require("../model/Player");
 var University_1 = require("../model/University");
 var Batiment_1 = require("../model/Batiment");
+var Util_1 = require("../model/Util");
 var GamePhase;
 (function (GamePhase) {
     GamePhase[GamePhase["PRE_RENTREE"] = 0] = "PRE_RENTREE";
@@ -42,12 +43,30 @@ var Game = (function () {
             this.university.formations.push(formation);
         }
         else {
-            var index = this.university.formations.indexOf(formation);
+            var index = Util_1.Util.indexOf(formation, this.university.formations);
             if (index >= 0) {
                 this.university.formations[index] = formation;
             }
         }
         return true;
+    };
+    Game.prototype.recrut = function (emp) {
+        this.university.employees.push(emp);
+    };
+    Game.prototype.fire = function (emp) {
+        var index = Util_1.Util.indexOf(emp, this.university.employees);
+        if (index >= 0) {
+            this.university.employees.splice(index, 1);
+        }
+    };
+    Game.prototype.closeFormation = function (form) {
+        var index = Util_1.Util.indexOf(form, this.university.formations);
+        if (index >= 0) {
+            this.university.formations.splice(index, 1);
+        }
+    };
+    Game.prototype.tick = function () {
+        console.log("TICK!");
     };
     return Game;
 }());

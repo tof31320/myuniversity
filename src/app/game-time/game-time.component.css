@@ -1,0 +1,7 @@
+.game-time {
+    width: 200px;
+    float: right;
+    padding-top: 10px;
+    font-weight: bold;
+    text-align: right;
+}

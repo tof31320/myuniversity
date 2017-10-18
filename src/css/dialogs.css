@@ -1,14 +1,14 @@
-img.avatar {
-    width: 100px;
+.dialog {
+    position: fixed;
+    left: 0;
+    top: 20px;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    overflow: auto;
 }
 
-tr.employee:hover {
-    cursor: pointer;
-    border: solid 1px black;
-    background-color: lightblue;
-}
-
-#person-selection {
+.dialog-content {
     background-color: white;
     margin: auto;
     width: 50%;
@@ -18,18 +18,4 @@ tr.employee:hover {
     -o-box-shadow: 10px 10px 5px 0px #656565;
     box-shadow: 10px 10px 5px 0px #656565;
     filter: progid: DXImageTransform.Microsoft.Shadow(color=#656565, Direction=134, Strength=5);
-}
-
-table#persons {
-    width: 100%;
-}
-
-.dialog-modal {
-    position: fixed;
-    left: 0;
-    top: 20px;
-    right: 0;
-    bottom: 0;
-    z-index: 1000;
-    overflow: auto;
 }

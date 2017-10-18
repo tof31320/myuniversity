@@ -15,6 +15,5 @@ export class StatusBarComponent {
 
   showOptionsMenu(){
     this.gameComponent.menuInGameVisible = true;
-    console.log("MENU");
   }
 }

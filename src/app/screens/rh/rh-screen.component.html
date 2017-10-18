@@ -2,6 +2,31 @@
 
 <button class="pure-button" (click)="openRecrutement()"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;Recruter...</button>
 
-<div class="alert alert-warning"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Vous n'avez aucun employé dans votre université !</div>
+<div class="alert alert-warning" *ngIf="employees.length === 0"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Vous n'avez aucun employé dans votre université !</div>
 
-<person-selection *ngIf="showRecrutement" [employees]="otherEmployees"></person-selection>
+<person-selection *ngIf="showRecrutement" [employees]="otherEmployees" (onSelection)="onEmployeeSelection($event)"></person-selection>
+
+<table id="persons" class="pure-table" *ngIf="employees.length > 0">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Nom</th>
+            <th>Age</th>
+            <th>Profession</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="employee" *ngFor="let e of employees">
+            <td>
+                <img class="avatar" [src]="'assets/images/avatars/' + e.avatar" />
+            </td>
+            <td>{{e.prenom}} {{e.nom}}</td>
+            <td></td>
+            <td>{{e.profession}}</td>
+            <td>
+                <button (click)="fireEmployee(e)">Licencier</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

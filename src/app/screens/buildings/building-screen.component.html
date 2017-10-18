@@ -3,15 +3,15 @@
 <div id="buildForm" *ngIf="buildFormVisible">
     <div class="type-batiment" *ngFor="let type of typesBatiment" (click)="build(type)" [ngClass]="{'disabled':!gameComponent.game.canBuild(type)}">
         <div class="type-batiment-size"><i class="fa fa-building-o" aria-hidden="true"></i>[{{type.size}}]</div>
-        <div class="type-batiment-name">{{type.nom}}</div>                
-        <div class="type-batiment-price"><i class="fa fa-usd" aria-hidden="true"></i> {{type.price}}</div>        
+        <div class="type-batiment-name">{{type.nom}}</div>
+        <div class="type-batiment-price"><i class="fa fa-usd" aria-hidden="true"></i> {{type.price}}</div>
     </div>
     <button class="pure-button button-xsmall" (click)="closeBuildForm()">Annuler</button>
 </div>
 <div class="alert alert-warning" *ngIf="!batiments || batiments.length===0"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Vous n'avez aucun batiment</div>
 <div class="batiments" *ngIf="batiments && batiments.length>0">
-    <div class="batiment" *ngFor="let b of batiments">        
-        <div class="batiment-title" (click)="selectBatiment(b)">{{b.nom}}</div>
+    <div class="batiment" *ngFor="let b of batiments">
+        <div class="batiment-title" (click)="selectBatiment(b)"><i class="fa fa-building" aria-hidden="true"></i>&nbsp;{{b.nom}}</div>
         <batiment-details [batiment]="b" *ngIf="batimentSelected===b"></batiment-details>
     </div>
 </div>

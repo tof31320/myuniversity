@@ -28,6 +28,15 @@ var RHScreenComponent = (function () {
     RHScreenComponent.prototype.closeRecrutement = function () {
         this.showRecrutement = false;
     };
+    RHScreenComponent.prototype.onEmployeeSelection = function (emp) {
+        console.log(emp);
+        this.gameComponent.game.recrut(emp);
+        this.gameComponent.sync();
+        this.closeRecrutement();
+    };
+    RHScreenComponent.prototype.fireEmployee = function (emp) {
+        this.gameComponent.game.fire(emp);
+    };
     return RHScreenComponent;
 }());
 __decorate([
@@ -38,6 +47,7 @@ RHScreenComponent = __decorate([
     core_1.Component({
         selector: 'rh-screen',
         templateUrl: './rh-screen.component.html',
+        styleUrls: ['./rh-screen.component.css'],
         providers: [IA_1.IAService]
     }),
     __metadata("design:paramtypes", [IA_1.IAService])

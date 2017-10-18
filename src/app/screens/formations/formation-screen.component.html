@@ -6,23 +6,17 @@
     <form name="frmFormation" (ngSubmit)="saveFormation(editFormationForm)" #editFormationForm="ngForm" novalidate>
         <fieldset>
             <div class="pure-control-group">
-                <input id="intitule"
-                 [(ngModel)]="formationSelected.intitule"
-                  name="intituleF" 
-                  class="pure-input-1"
-                  type="text" size="50" 
-                  placeholder="Intitulé de la formation" 
-                  autofocus />
+                <input id="intitule" [(ngModel)]="formationSelected.intitule" name="intituleF" class="pure-input-1" type="text" size="50" placeholder="Intitulé de la formation" autofocus />
             </div>
         </fieldset>
         <fieldset>
             Domaine:
             <div id="domaines" class="pure-control-group">
-                <div class="domaine" [ngClass]="{'domaine-selected':formationSelected && formationSelected.domaine && formationSelected.domaine === d}" (click)="selectDomaine(d)" *ngFor="let d of domaines">
-                    <input type="radio" #domaineSelection required id="domaine-{{d.id}}" name="domaine" value="{{d.id}}}" [checked]="formationSelected.domaine && formationSelected.domaine === d" />&nbsp;{{d.nom}}
+                <div class="domaine" [ngClass]="{'domaine-selected':formationSelected && formationSelected.domaine && formationSelected.domaine.id && formationSelected.domaine.id === d.id}" (click)="selectDomaine(d)" *ngFor="let d of domaines">
+                    <input type="radio" #domaineSelection required id="domaine-{{d.id}}" name="domaine" value="{{d.id}}}" [checked]="formationSelected.domaine && formationSelected.domaine.id && formationSelected.domaine.id === d.id" />&nbsp;{{d.nom}}
                 </div>
             </div>
-        </fieldset>    
+        </fieldset>
         <fieldset>
             Modules:
             <div id="modules" class="pure-control-group">
@@ -30,33 +24,74 @@
                     <input type="checkbox" id="module-{{m.id}}" name="module" value="{{m.id}}" [checked]="formationSelected && formationSelected.containsModule(m)" />&nbsp;{{m.nom}}
                 </div>
             </div>
-        </fieldset>           
+        </fieldset>
+        <fieldset>
+            <person-selection *ngIf="personSelectionDialogOpen" [employees]="gameComponent.game.university.employees" [modal]="true" (onSelection)="selectPerson($event)">
+            </person-selection>
+
+            Paramétrage des modules:
+            <div id="modulesParams">
+                <table class="pure-table pure-table-striped">
+                    <thead>
+                        <tr>
+                            <th>Module</th>
+                            <th>Volume horaire</th>
+                            <th>Enseignant(s)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let m of formationSelected.modules; let i=index">
+                            <td>{{m.nom}}</td>
+                            <td>
+                                <input type="number" size="2" name="hVol" [(ngModel)]="formationSelected.modules[i].hVol" /> heure(s)
+                            </td>
+                            <td>
+                                <ul>
+                                    <li *ngFor="let emp of m.teachers">
+                                        {{emp.prenom}} {{emp.nom}}
+                                        <button type="button" class="pure-button button-xsmall" (click)="removeProfessorFromModule(m, emp)">X</button>
+                                    </li>
+                                </ul>
+                                <button type="button" class="pure-button button-xsmall" (click)="openProfessorsSelectionDialog(m)">Sélectionner...</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td>Total</td>
+                            <td>{{formationSelected.totalHVolume()}} heure(s)</td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+            </div>
+        </fieldset>
         <fieldset>
             <div id="actions" class="pure-control-group">
                 <button type="button" class="pure-button" (click)="cancelEdit()">Annuler</button>
-                <button type="submit" class="pure-button" [disabled]="!isFormValid()">Créer</button>
-            </div> 
-        </fieldset> 
+                <button type="submit" class="pure-button" [disabled]="!isFormValid()">Enregistrer</button>
+            </div>
+        </fieldset>
     </form>
 </div>
 
 <div class="alert alert-warning" *ngIf="formations.length===0"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Vous n'avez aucune formation dans votre université !</div>
 <div id="allFormations">
-    
+
     <div class="formation" *ngFor="let f of formations">
         <div class="formation-name"><i class="fa fa-book"></i>&nbsp;{{f.intitule}}</div>
         <div class="formation-buttons">
-            <button class="pure-button button-secondary button-small"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-            <button class="pure-button button-warning button-small"><i class="fa fa-times" aria-hidden="true"></i></button>
+            <button class="pure-button button-secondary button-small" (click)="editFormation(f)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+            <button class="pure-button button-warning button-small" (click)="closeFormation(f)"><i class="fa fa-times" aria-hidden="true"></i></button>
         </div>
         <div class="formation-details">
             Domaine: <span class="formation-details-domaine">{{f.domaine.nom}}</span>
-            <br/>
-            Modules: <br/>
+            <br/> Modules: <br/>
             <div class="formation-details-module" *ngFor="let m of f.modules">
-                {{m.nom}} : 
+                {{m.nom}} :
             </div>
         </div>
     </div>
-    
+
 </div>

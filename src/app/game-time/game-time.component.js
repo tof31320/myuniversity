@@ -9,30 +9,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var Game_1 = require("../model/Game");
 var game_component_1 = require("../game/game.component");
-var StatusBarComponent = (function () {
-    function StatusBarComponent() {
+var GameTimeComponent = (function () {
+    function GameTimeComponent() {
+        this.currentDate = new Date(Date.parse("1980/07/01"));
+        this.onTick = new core_1.EventEmitter();
     }
-    StatusBarComponent.prototype.showOptionsMenu = function () {
-        this.gameComponent.menuInGameVisible = true;
+    GameTimeComponent.prototype.ngOnInit = function () {
     };
-    return StatusBarComponent;
+    GameTimeComponent.prototype.tick = function () {
+        this.onTick.emit();
+    };
+    return GameTimeComponent;
 }());
 __decorate([
     core_1.Input(),
     __metadata("design:type", game_component_1.GameComponent)
-], StatusBarComponent.prototype, "gameComponent", void 0);
+], GameTimeComponent.prototype, "gameComponent", void 0);
 __decorate([
-    core_1.Input(),
-    __metadata("design:type", Game_1.Game)
-], StatusBarComponent.prototype, "game", void 0);
-StatusBarComponent = __decorate([
+    core_1.Output(),
+    __metadata("design:type", Object)
+], GameTimeComponent.prototype, "onTick", void 0);
+GameTimeComponent = __decorate([
     core_1.Component({
-        selector: 'status-bar',
-        templateUrl: './status-bar.component.html',
-        styleUrls: ['css/buttons.css', './status-bar.component.css']
+        selector: 'game-time',
+        templateUrl: './game-time.component.html',
+        styleUrls: ['css/buttons.css', './game-time.component.css']
     })
-], StatusBarComponent);
-exports.StatusBarComponent = StatusBarComponent;
-//# sourceMappingURL=status-bar.component.js.map
+], GameTimeComponent);
+exports.GameTimeComponent = GameTimeComponent;
+//# sourceMappingURL=game-time.component.js.map

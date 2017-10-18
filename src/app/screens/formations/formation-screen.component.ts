@@ -5,6 +5,7 @@ import { ModuleFormation } from '../../model/ModuleFormation';
 import { ServiceModel } from '../../model/ServiceModel.service';
 import { Formation } from '../../model/Formation';
 import { NgForm } from '@angular/forms';
+import { Employee} from '../../model/Employee';
 
 @Component({
   selector: 'formation-screen',
@@ -23,17 +24,21 @@ export class FormationScreenComponent implements OnInit {
 
   formationSelected: Formation = null;
 
+  personSelectionDialogOpen: boolean = false;
+  moduleSelected: ModuleFormation = null;
+
   constructor(private serviceModel: ServiceModel){}
 
   ngOnInit(){
     this.serviceModel.getAllDomaines().subscribe(domaines=> this.domaines = domaines);
-    this.serviceModel.getAllModulesFormation().subscribe(modules => this.modules = modules);    
+    this.serviceModel.getAllModulesFormation().subscribe(modules => this.modules = modules);
 
     this.formations = this.gameComponent.game.university.formations;
   }
 
   showFormationForm(){
     this.formationSelected = new Formation();
+    console.log(this.formationSelected);
   }
 
   selectDomaine(domaine: Domaine){
@@ -44,11 +49,11 @@ export class FormationScreenComponent implements OnInit {
     if(this.formationSelected.containsModule(m)){
       this.formationSelected.removeModule(m);
     }else{
-      this.formationSelected.addModule(m);
+      this.formationSelected.addModule(m.clone());
     }
   }
 
-  saveFormation(){    
+  saveFormation(){
     if(this.gameComponent.game.saveFormation(this.formationSelected)){
       this.formationSelected = null;
     }
@@ -67,5 +72,37 @@ export class FormationScreenComponent implements OnInit {
 
   cancelEdit(){
     this.formationSelected = null;
+  }
+
+  editFormation(formation: Formation){
+    this.formationSelected = formation.clone();
+  }
+
+  closeFormation(formation: Formation){
+    this.gameComponent.game.closeFormation(formation);
+
+    this.gameComponent.sync();
+  }
+
+  onHVolumeChange(module: ModuleFormation){
+    console.log(module);
+  }
+
+  openProfessorsSelectionDialog(module: ModuleFormation){
+    this.moduleSelected = module;
+    this.personSelectionDialogOpen = true;
+  }
+
+  selectPerson(emp: Employee){
+    if(this.moduleSelected != null){
+      this.moduleSelected.teachers.push(emp);
+    }
+
+    this.moduleSelected = null;
+    this.personSelectionDialogOpen = false;
+  }
+
+  removeProfessorFromModule(module: ModuleFormation, emp: Employee){
+    module.removeTeacher(emp);
   }
 }

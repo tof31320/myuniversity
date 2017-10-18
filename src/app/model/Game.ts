@@ -3,7 +3,9 @@ import { University } from '../model/University';
 import { TypeBatiment } from '../model/TypeBatiment';
 import { Batiment } from '../model/Batiment';
 import { Formation } from '../model/Formation';
-import { ModuleFormation } from '../model/ModuleFormation';
+import { Employee } from '../model/Employee';
+
+import { Util } from '../model/Util';
 
 enum GamePhase {
   PRE_RENTREE,
@@ -53,12 +55,37 @@ export class Game {
       // new
       formation.id = Date.now();
       this.university.formations.push(formation);
+
     }else{
-      let index = this.university.formations.indexOf(formation);
+      let index = Util.indexOf(formation, this.university.formations);
+
       if(index >= 0){
         this.university.formations[index] = formation;
       }
     }
     return true;
+  }
+
+  recrut(emp: Employee){
+    this.university.employees.push(emp);
+  }
+
+  fire(emp: Employee){
+    let index: number = Util.indexOf(emp, this.university.employees);
+    if(index >= 0){
+      this.university.employees.splice(index, 1);
+    }
+  }
+
+  closeFormation(form: Formation){
+    let index: number = Util.indexOf(form, this.university.formations);
+
+    if(index >= 0){
+      this.university.formations.splice(index, 1);
+    }
+  }
+
+  tick(){
+    console.log("TICK!");
   }
 }

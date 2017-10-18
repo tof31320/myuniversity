@@ -1,28 +1,30 @@
-<div id="person-selection">
-    <strong>Engager un nouvel employé: </strong>
+<div [ngClass]="{'dialog':modal}">
+    <div id="person-selection">
+        <strong>Engager un nouvel employé: </strong>
 
-    <table id="persons" class="pure-table pure-table-striped">
-        <thead>
-            <tr> 
-                <th></th>               
-                <th>Nom</th>
-                <th>Age</th>
-                <th>Profession</th>
-                <th></th>
-            </tr>            
-        </thead>
-        <tbody>
-            <tr class="employee" *ngFor="let e of employees">
-                <td>
-                    <img class="avatar" [src]="'assets/images/avatars/' + e.avatar" />
-                </td>
-                <td>{{e.prenom}} {{e.nom}}</td>
-                <td></td>
-                <td>{{e.profession}}</td>
-                <td>
-                    <button class="pure-button button-small">Engager</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+        <table id="persons" class="pure-table dialog-content">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Nom</th>
+                    <th>Age</th>
+                    <th>Profession</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="employee" *ngFor="let e of employees" (click)="selectPerson(e)">
+                    <td>
+                        <img class="avatar" [src]="'assets/images/avatars/' + e.avatar" />
+                    </td>
+                    <td>{{e.prenom}} {{e.nom}}</td>
+                    <td></td>
+                    <td>{{e.profession}}</td>
+                    <td>
+                        <button class="pure-button button-small" (click)="selectPerson(e)">Engager</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

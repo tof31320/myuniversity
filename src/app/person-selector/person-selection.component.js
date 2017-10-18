@@ -10,10 +10,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var PersonSelectionComponent = (function () {
-    function PersonSelectionComponent() {
+    function PersonSelectionComponent(el) {
+        this.el = el;
         this.employees = new Array();
+        this.modal = false;
+        this.onSelection = new core_1.EventEmitter();
     }
     PersonSelectionComponent.prototype.ngOnInit = function () {
+    };
+    PersonSelectionComponent.prototype.selectPerson = function (employe) {
+        this.onSelection.emit(employe);
     };
     return PersonSelectionComponent;
 }());
@@ -21,12 +27,21 @@ __decorate([
     core_1.Input(),
     __metadata("design:type", Array)
 ], PersonSelectionComponent.prototype, "employees", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Boolean)
+], PersonSelectionComponent.prototype, "modal", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
+], PersonSelectionComponent.prototype, "onSelection", void 0);
 PersonSelectionComponent = __decorate([
     core_1.Component({
         selector: 'person-selection',
         templateUrl: './person-selection.component.html',
-        styleUrls: ['./person-selection.component.css']
-    })
+        styleUrls: ['css/dialogs.css', './person-selection.component.css']
+    }),
+    __metadata("design:paramtypes", [core_1.ElementRef])
 ], PersonSelectionComponent);
 exports.PersonSelectionComponent = PersonSelectionComponent;
 //# sourceMappingURL=person-selection.component.js.map

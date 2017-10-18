@@ -1,5 +1,6 @@
 import { Domaine } from './Domaine';
 import { ModuleFormation } from './ModuleFormation';
+import { Util } from './Util';
 
 export class Formation {
   id: number = 0;
@@ -14,7 +15,7 @@ export class Formation {
     f.domaine = Domaine.fromJSON(json['domaine']);
 
     f.modules = new Array();
-    for(let i = 0; i < json['modules'].length; i++){
+    for(let i = 0; json['modules'] && i < json['modules'].length; i++){
       f.modules.push(ModuleFormation.fromJSON(json['modules'][i]));
     }
 
@@ -28,7 +29,7 @@ export class Formation {
   }
 
   removeModule(m: ModuleFormation){
-    let index: number = this.modules.indexOf(m);
+    let index: number = Util.indexOf(m, this.modules);
 
     if(index >= 0){
       this.modules.splice(index, 1);
@@ -42,5 +43,18 @@ export class Formation {
       }
     }
     return false;
+  }
+
+  totalHVolume(): number{
+    let ret: number = 0;
+    for(let i = 0; i < this.modules.length; i++){
+      ret = ret + this.modules[i].hVol;
+    }
+    return ret;
+  }
+
+  clone(): Formation {
+    let f: Formation = Formation.fromJSON(JSON.parse(JSON.stringify(this)));
+    return f;
   }
 }

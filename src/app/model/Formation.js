@@ -1,6 +1,7 @@
 "use strict";
 var Domaine_1 = require("./Domaine");
 var ModuleFormation_1 = require("./ModuleFormation");
+var Util_1 = require("./Util");
 var Formation = (function () {
     function Formation() {
         this.id = 0;
@@ -13,7 +14,7 @@ var Formation = (function () {
         f.intitule = json['intitule'];
         f.domaine = Domaine_1.Domaine.fromJSON(json['domaine']);
         f.modules = new Array();
-        for (var i = 0; i < json['modules'].length; i++) {
+        for (var i = 0; json['modules'] && i < json['modules'].length; i++) {
             f.modules.push(ModuleFormation_1.ModuleFormation.fromJSON(json['modules'][i]));
         }
         return f;
@@ -24,7 +25,7 @@ var Formation = (function () {
         }
     };
     Formation.prototype.removeModule = function (m) {
-        var index = this.modules.indexOf(m);
+        var index = Util_1.Util.indexOf(m, this.modules);
         if (index >= 0) {
             this.modules.splice(index, 1);
         }
@@ -36,6 +37,17 @@ var Formation = (function () {
             }
         }
         return false;
+    };
+    Formation.prototype.totalHVolume = function () {
+        var ret = 0;
+        for (var i = 0; i < this.modules.length; i++) {
+            ret = ret + this.modules[i].hVol;
+        }
+        return ret;
+    };
+    Formation.prototype.clone = function () {
+        var f = Formation.fromJSON(JSON.parse(JSON.stringify(this)));
+        return f;
     };
     return Formation;
 }());
