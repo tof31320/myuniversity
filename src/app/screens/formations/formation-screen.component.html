@@ -48,7 +48,7 @@
                             <td>
                                 <ul>
                                     <li *ngFor="let emp of m.teachers">
-                                        {{emp.prenom}} {{emp.nom}}
+                                        <ui-person [person]="emp"></ui-person>
                                         <button type="button" class="pure-button button-xsmall" (click)="removeProfessorFromModule(m, emp)">X</button>
                                     </li>
                                 </ul>
@@ -66,6 +66,13 @@
                 </table>
 
             </div>
+        </fieldset>
+        <fieldset>
+            Salle de cours:
+            <select name="batiments">
+              <option>-</option>
+              <option *ngFor="let b of gameComponent.game.university.batiments">{{b.nom}}</option>
+            </select>
         </fieldset>
         <fieldset>
             <div id="actions" class="pure-control-group">

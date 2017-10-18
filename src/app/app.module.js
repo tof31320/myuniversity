@@ -23,6 +23,7 @@ var student_screen_component_1 = require("./screens/students/student-screen.comp
 var batiment_details_component_1 = require("./batiment/batiment-details.component");
 var person_selection_component_1 = require("./person-selector/person-selection.component");
 var game_time_component_1 = require("./game-time/game-time.component");
+var ui_person_component_1 = require("./ui/ui-person/ui-person.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -34,7 +35,8 @@ AppModule = __decorate([
         declarations: [app_component_1.AppComponent, main_menu_component_1.MainMenuComponent, newgame_component_1.NewGameComponent, game_component_1.GameComponent, loadgame_component_1.LoadGameComponent,
             status_bar_component_1.StatusBarComponent, in_game_menu_component_1.InGameMenuComponent,
             building_screen_component_1.BuildingScreenComponent, formation_screen_component_1.FormationScreenComponent, rh_screen_component_1.RHScreenComponent, student_screen_component_1.StudentScreenComponent,
-            batiment_details_component_1.BatimentDetailsComponent, person_selection_component_1.PersonSelectionComponent, game_time_component_1.GameTimeComponent],
+            batiment_details_component_1.BatimentDetailsComponent, person_selection_component_1.PersonSelectionComponent, game_time_component_1.GameTimeComponent,
+            ui_person_component_1.UIPersonComponent],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);

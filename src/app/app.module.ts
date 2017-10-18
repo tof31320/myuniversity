@@ -17,13 +17,15 @@ import { StudentScreenComponent } from './screens/students/student-screen.compon
 import { BatimentDetailsComponent } from './batiment/batiment-details.component';
 import { PersonSelectionComponent } from './person-selector/person-selection.component';
 import { GameTimeComponent } from './game-time/game-time.component';
+import { UIPersonComponent } from './ui/ui-person/ui-person.component';
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule, HttpModule ],
   declarations: [ AppComponent, MainMenuComponent, NewGameComponent, GameComponent, LoadGameComponent,
                   StatusBarComponent, InGameMenuComponent,
                   BuildingScreenComponent,FormationScreenComponent,RHScreenComponent,StudentScreenComponent,
-                  BatimentDetailsComponent, PersonSelectionComponent, GameTimeComponent ],
+                  BatimentDetailsComponent, PersonSelectionComponent, GameTimeComponent,
+                  UIPersonComponent ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

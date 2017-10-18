@@ -2,11 +2,13 @@
 var Domaine_1 = require("./Domaine");
 var ModuleFormation_1 = require("./ModuleFormation");
 var Util_1 = require("./Util");
+var Batiment_1 = require("./Batiment");
 var Formation = (function () {
     function Formation() {
         this.id = 0;
         this.intitule = '';
         this.modules = new Array();
+        this.batiment = null;
     }
     Formation.fromJSON = function (json) {
         var f = new Formation();
@@ -16,6 +18,9 @@ var Formation = (function () {
         f.modules = new Array();
         for (var i = 0; json['modules'] && i < json['modules'].length; i++) {
             f.modules.push(ModuleFormation_1.ModuleFormation.fromJSON(json['modules'][i]));
+        }
+        if (json['batiment']) {
+            f.batiment = Batiment_1.Batiment.fromJSON(json['batiment']);
         }
         return f;
     };

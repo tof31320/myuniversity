@@ -1,0 +1,4 @@
+<span class="ui-person-name" (mouseenter)="showDetails(true)" (mouseleave)="showDetails(false)">{{person.prenom}} {{person.nom}}</span>
+<div id="{{person.id}}" *ngIf="detailsPanelVisible" class="person-details">
+    <img [src]="'assets/images/avatars/' + person.avatar" class="avatar" />{{person.prenom}} {{person.nom}}
+</div>

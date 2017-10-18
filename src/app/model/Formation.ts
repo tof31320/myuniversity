@@ -1,12 +1,14 @@
 import { Domaine } from './Domaine';
 import { ModuleFormation } from './ModuleFormation';
 import { Util } from './Util';
+import { Batiment } from './Batiment';
 
 export class Formation {
   id: number = 0;
   intitule: string = '';
   domaine: Domaine;
   modules: ModuleFormation[] = new Array();
+  batiment: Batiment = null;
 
   static fromJSON(json: Object){
     let f: Formation = new Formation();
@@ -17,6 +19,10 @@ export class Formation {
     f.modules = new Array();
     for(let i = 0; json['modules'] && i < json['modules'].length; i++){
       f.modules.push(ModuleFormation.fromJSON(json['modules'][i]));
+    }
+
+    if(json['batiment']){
+      f.batiment = Batiment.fromJSON(json['batiment']);
     }
 
     return f;
