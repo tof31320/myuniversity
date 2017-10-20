@@ -18,7 +18,7 @@
             </div>
         </fieldset>
         <fieldset>
-            Modules:
+            Modules: <span *ngIf="formationSelected.domaine">{{formationSelected.domaine.nbModulesMin}} module(s) minimum.</span>
             <div id="modules" class="pure-control-group">
                 <div class="module" *ngFor="let m of modules" (click)="toggleModule(m)" [ngClass]="{'module-selected':formationSelected && formationSelected.containsModule(m)}">
                     <input type="checkbox" id="module-{{m.id}}" name="module" value="{{m.id}}" [checked]="formationSelected && formationSelected.containsModule(m)" />&nbsp;{{m.nom}}
@@ -26,7 +26,7 @@
             </div>
         </fieldset>
         <fieldset>
-            <person-selection *ngIf="personSelectionDialogOpen" [employees]="gameComponent.game.university.employees" [modal]="true" (onSelection)="selectPerson($event)">
+            <person-selection *ngIf="personSelectionDialogOpen" [employees]="gameComponent.game.university.employees" [modal]="true" (onSelection)="selectPerson($event)" (onClose)="personSelectionDialogOpen=false">
             </person-selection>
 
             Paramétrage des modules:
@@ -68,10 +68,10 @@
             </div>
         </fieldset>
         <fieldset>
-            Salle de cours:
-            <select name="batiments">
+            Salle de cours: 
+            <select name="batiments" [(ngModel)]="formationSelected.batiment" [compareWith]="compareWithBatimentId">
               <option>-</option>
-              <option *ngFor="let b of gameComponent.game.university.batiments">{{b.nom}}</option>
+              <option *ngFor="let b of gameComponent.game.university.batiments" [ngValue]="b">{{b.nom}}</option>
             </select>
         </fieldset>
         <fieldset>
@@ -98,6 +98,8 @@
             <div class="formation-details-module" *ngFor="let m of f.modules">
                 {{m.nom}} :
             </div>
+            <br/>
+            Batiment: <strong>{{f.batiment.nom}}</strong>
         </div>
     </div>
 

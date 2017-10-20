@@ -37,6 +37,14 @@ var University = (function () {
         }
         return n;
     };
+    University.prototype.findBatimentById = function (id) {
+        for (var i = 0; i < this.batiments.length; i++) {
+            if (this.batiments[i].id === id) {
+                return this.batiments[i];
+            }
+        }
+        return null;
+    };
     return University;
 }());
 exports.University = University;

@@ -1,7 +1,7 @@
 <div [ngClass]="{'dialog':modal}">
     <div id="person-selection">
         <strong>Engager un nouvel employé: </strong>
-
+        <button type="button" (click)="closeSelection()">X</button>
         <table id="persons" class="pure-table dialog-content">
             <thead>
                 <tr>

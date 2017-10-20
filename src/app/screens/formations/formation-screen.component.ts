@@ -6,6 +6,7 @@ import { ServiceModel } from '../../model/ServiceModel.service';
 import { Formation } from '../../model/Formation';
 import { NgForm } from '@angular/forms';
 import { Employee} from '../../model/Employee';
+import { Batiment } from '../../model/Batiment';
 
 @Component({
   selector: 'formation-screen',
@@ -57,6 +58,7 @@ export class FormationScreenComponent implements OnInit {
     if(this.gameComponent.game.saveFormation(this.formationSelected)){
       this.formationSelected = null;
     }
+    console.log(" formations", this.gameComponent.game.university.formations);
     this.gameComponent.sync();
   }
 
@@ -66,7 +68,14 @@ export class FormationScreenComponent implements OnInit {
     ret = ret && this.formationSelected.intitule != '';
     ret = ret && this.formationSelected.domaine != null;
     ret = ret && this.formationSelected.modules.length >= this.formationSelected.domaine.nbModulesMin;
+    
+    for(let i = 0; i < this.formationSelected.modules.length; i++){
+      ret = ret && this.formationSelected.modules[i].hVol >= 1;
+      ret = ret && this.formationSelected.modules[i].teachers && this.formationSelected.modules[i].teachers.length > 0;
+    }
 
+    ret = ret && this.formationSelected.batiment != null;        
+    
     return ret;
   }
 
@@ -85,7 +94,7 @@ export class FormationScreenComponent implements OnInit {
   }
 
   onHVolumeChange(module: ModuleFormation){
-    console.log(module);
+    
   }
 
   openProfessorsSelectionDialog(module: ModuleFormation){
@@ -104,5 +113,17 @@ export class FormationScreenComponent implements OnInit {
 
   removeProfessorFromModule(module: ModuleFormation, emp: Employee){
     module.removeTeacher(emp);
+  }
+
+  updateBatiment(event: any){    
+    this.formationSelected.batiment = this.gameComponent.game.university.findBatimentById(Number(event));
+    console.log(this.formationSelected);
+  }
+
+  compareWithBatimentId(b1: Batiment, b2: Batiment): boolean {
+    if(b1 == null || b2 == null){
+      return false;
+    }
+    return b1.id === b2.id;
   }
 }

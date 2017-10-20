@@ -15,11 +15,15 @@ var PersonSelectionComponent = (function () {
         this.employees = new Array();
         this.modal = false;
         this.onSelection = new core_1.EventEmitter();
+        this.onClose = new core_1.EventEmitter();
     }
     PersonSelectionComponent.prototype.ngOnInit = function () {
     };
     PersonSelectionComponent.prototype.selectPerson = function (employe) {
         this.onSelection.emit(employe);
+    };
+    PersonSelectionComponent.prototype.closeSelection = function () {
+        this.onClose.emit();
     };
     return PersonSelectionComponent;
 }());
@@ -35,6 +39,10 @@ __decorate([
     core_1.Output(),
     __metadata("design:type", core_1.EventEmitter)
 ], PersonSelectionComponent.prototype, "onSelection", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", Object)
+], PersonSelectionComponent.prototype, "onClose", void 0);
 PersonSelectionComponent = __decorate([
     core_1.Component({
         selector: 'person-selection',

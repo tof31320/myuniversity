@@ -16,6 +16,9 @@
         <button class="pure-button button-xsmall" [ngClass]="{'button-success': gameComponent.currentScreen==='students'}" (click)="gameComponent.showScreen('students')" title="Etudiants">
           <i class="fa fa-graduation-cap"></i>
         </button>
+        <button class="pure-button button-xsmall" [ngClass]="{'button-success': gameComponent.currentScreen==='world'}" (click)="gameComponent.showScreen('world')" title="Monde">
+          <i class="fa fa-globe" aria-hidden="true"></i>
+        </button>
     </div>
 
     <div class="actions">

@@ -46,6 +46,7 @@ var FormationScreenComponent = (function () {
         if (this.gameComponent.game.saveFormation(this.formationSelected)) {
             this.formationSelected = null;
         }
+        console.log(" formations", this.gameComponent.game.university.formations);
         this.gameComponent.sync();
     };
     FormationScreenComponent.prototype.isFormValid = function () {
@@ -53,6 +54,11 @@ var FormationScreenComponent = (function () {
         ret = ret && this.formationSelected.intitule != '';
         ret = ret && this.formationSelected.domaine != null;
         ret = ret && this.formationSelected.modules.length >= this.formationSelected.domaine.nbModulesMin;
+        for (var i = 0; i < this.formationSelected.modules.length; i++) {
+            ret = ret && this.formationSelected.modules[i].hVol >= 1;
+            ret = ret && this.formationSelected.modules[i].teachers && this.formationSelected.modules[i].teachers.length > 0;
+        }
+        ret = ret && this.formationSelected.batiment != null;
         return ret;
     };
     FormationScreenComponent.prototype.cancelEdit = function () {
@@ -66,7 +72,6 @@ var FormationScreenComponent = (function () {
         this.gameComponent.sync();
     };
     FormationScreenComponent.prototype.onHVolumeChange = function (module) {
-        console.log(module);
     };
     FormationScreenComponent.prototype.openProfessorsSelectionDialog = function (module) {
         this.moduleSelected = module;
@@ -81,6 +86,16 @@ var FormationScreenComponent = (function () {
     };
     FormationScreenComponent.prototype.removeProfessorFromModule = function (module, emp) {
         module.removeTeacher(emp);
+    };
+    FormationScreenComponent.prototype.updateBatiment = function (event) {
+        this.formationSelected.batiment = this.gameComponent.game.university.findBatimentById(Number(event));
+        console.log(this.formationSelected);
+    };
+    FormationScreenComponent.prototype.compareWithBatimentId = function (b1, b2) {
+        if (b1 == null || b2 == null) {
+            return false;
+        }
+        return b1.id === b2.id;
     };
     return FormationScreenComponent;
 }());

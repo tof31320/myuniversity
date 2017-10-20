@@ -43,5 +43,13 @@ export class University {
     return n;
   }
 
-
+  findBatimentById(id: number){
+    
+    for(let i = 0; i < this.batiments.length; i++){      
+      if(this.batiments[i].id === id){
+        return this.batiments[i];
+      } 
+    }
+    return null;
+  }
 }

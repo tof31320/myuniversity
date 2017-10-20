@@ -18,12 +18,13 @@ import { BatimentDetailsComponent } from './batiment/batiment-details.component'
 import { PersonSelectionComponent } from './person-selector/person-selection.component';
 import { GameTimeComponent } from './game-time/game-time.component';
 import { UIPersonComponent } from './ui/ui-person/ui-person.component';
+import { WorldScreenComponent } from './screens/world/world-screen.component';
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule, HttpModule ],
   declarations: [ AppComponent, MainMenuComponent, NewGameComponent, GameComponent, LoadGameComponent,
                   StatusBarComponent, InGameMenuComponent,
-                  BuildingScreenComponent,FormationScreenComponent,RHScreenComponent,StudentScreenComponent,
+                  BuildingScreenComponent,FormationScreenComponent,RHScreenComponent,StudentScreenComponent,WorldScreenComponent,
                   BatimentDetailsComponent, PersonSelectionComponent, GameTimeComponent,
                   UIPersonComponent ],
   bootstrap:    [ AppComponent ]

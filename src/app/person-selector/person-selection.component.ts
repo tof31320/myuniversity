@@ -11,7 +11,8 @@ export class PersonSelectionComponent implements OnInit {
     @Input() employees: Employee[] = new Array();
     @Input() modal: boolean = false;
 
-    @Output() onSelection: EventEmitter<Employee> = new EventEmitter<Employee>();
+    @Output() onSelection: EventEmitter<Employee> = new EventEmitter<Employee>();    
+    @Output() onClose = new EventEmitter();
 
     constructor(private el: ElementRef){}
 
@@ -20,5 +21,9 @@ export class PersonSelectionComponent implements OnInit {
 
     selectPerson(employe: Employee){
       this.onSelection.emit(employe);
+    }
+
+    closeSelection(){
+        this.onClose.emit();
     }
 }

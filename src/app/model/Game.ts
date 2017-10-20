@@ -55,7 +55,7 @@ export class Game {
       // new
       formation.id = Date.now();
       this.university.formations.push(formation);
-
+      
     }else{
       let index = Util.indexOf(formation, this.university.formations);
 
