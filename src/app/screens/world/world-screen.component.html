@@ -1,4 +1,47 @@
 <h1>Monde</h1>
 <div id="worldScreen">
-
+ 
+    <table id="otherUniversities">
+        <tr>
+            <td>
+                <div class="university" *ngIf="world.universities.length > 0">
+                    {{world.universities[0].name}}
+                </div>
+            </td>
+            <td><div class="university" *ngIf="world.universities.length > 6">
+                {{world.universities[6].name}}
+                </div>
+            </td>
+            <td><div class="university" *ngIf="world.universities.length > 2">
+                {{world.universities[2].name}}
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><div class="university" *ngIf="world.universities.length > 4">
+                {{world.universities[4].name}}
+                </div>
+            </td>
+            <td><div class="university">{{this.gameComponent.game.university.name}} (VOUS)</div></td>
+            <td><div class="university" *ngIf="world.universities.length > 5">
+                {{world.universities[5].name}}
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><div class="university" *ngIf="world.universities.length > 3">
+                    {{world.universities[3].name}}
+                    </div>
+                </td>
+            <td><div class="university" *ngIf="world.universities.length > 7">
+                    {{world.universities[7].name}}
+                    </div>
+                </td>
+            <td>
+                <div class="university" *ngIf="world.universities.length > 1">
+                {{world.universities[1].name}}
+                </div> 
+            </td>
+        </tr>
+    </table>
 </div>

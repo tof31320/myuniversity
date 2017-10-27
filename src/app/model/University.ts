@@ -1,8 +1,10 @@
 import { Batiment } from './Batiment';
 import { Formation } from './Formation';
 import { Employee } from './Employee';
+import { DB } from './DB';
 
 export class University {
+  id: number = 0;
   name: string = '';
   areaSize: number = 20;
 
@@ -15,23 +17,38 @@ export class University {
     u.name = json['name'];
     u.areaSize = json['areaSize'];
 
-    for(let i = 0; i < json['batiments'].length; i++){
-      let b: Batiment = Batiment.fromJSON(json['batiments'][i]);
-
-      u.batiments.push(b);
-    }
-
-    u.formations = new Array();
-    for(let i = 0; i < json['formations'].length; i++){
-      let f: Formation = Formation.fromJSON(json['formations'][i]);
-      u.formations.push(f);
-    }
-
-    u.employees = new Array();
-    for(let i = 0; i < json['employees'].length; i++){
-      let e: Employee = Employee.fromJSON(json['employees'][i]);
-      u.employees.push(e);
-    }
+    u.batiments = json['batiments'].map(bid => {
+      let bat = DB.findBatimentById(bid);
+      if(bat == null){
+        bat = new Batiment();
+        bat.id = bid;
+        return bat;
+      }else{
+        return bat;
+      }
+    });
+   
+    u.formations = json['formations'].map(fid => {
+      let f = DB.findFormationById(fid);
+      if(f == null){
+        f = new Formation();
+        f.id = fid;
+        return f;
+      }else{
+        return f;
+      }
+    });
+    
+    u.employees = json['employees'].map(eid => {
+      let e = DB.findEmployeeById(eid);
+      if(e == null){
+        e = new Employee();
+        e.id = eid;
+        return e;
+      }else{
+        return e;
+      }
+    });
     return u;
   }
 
@@ -41,6 +58,17 @@ export class University {
       n += this.batiments[i].type.size;
     }
     return n;
+  }
+
+  toJSON(){
+    return {
+      id: this.id,
+      name: this.name,
+      areaSize: this.areaSize,
+      batiments: this.batiments.map(b => b.id),
+      formations: this.formations.map(f => f.id),
+      employees: this.employees.map(e => e.id)
+    }
   }
 
   findBatimentById(id: number){

@@ -1,0 +1,18 @@
+#otherUniversities {
+    width: 100%;
+    border: solid 1px lightgray;
+}
+
+#otherUniversities tr {
+    line-height: 50px;
+}
+
+#otherUniversities td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.university {
+    border: solid 2px lightseagreen;
+    border-radius: 10px;
+}

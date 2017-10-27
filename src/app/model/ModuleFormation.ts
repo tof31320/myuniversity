@@ -1,5 +1,6 @@
 import { Employee } from './Employee';
 import { Util } from './Util';
+import { DB } from './DB';
 
 export class ModuleFormation {
     id: number = 0;
@@ -12,12 +13,25 @@ export class ModuleFormation {
         let m: ModuleFormation = new ModuleFormation();
         Object.assign(m, json);
 
-        m.teachers = new Array();
-        for(let i = 0;  json['teachers'] && i < json['teachers'].length; i++){
-          let emp: Employee = Employee.fromJSON(json['teachers'][i]);
-          m.teachers.push(emp);
-        }
+        m.teachers = json['teachersId'].map(eid => {
+          let e = DB.findEmployeeById(eid);
+          if(e == null){
+            e = new Employee();
+            e.id = eid;
+          }
+          return e;
+        });
+
         return m;
+    }
+
+    toJSON(){
+      return {
+        id: this.id,
+        nom: this.nom,
+        hVol: this.hVol,
+        teachersId: this.teachers.map(e => e.id)
+      }
     }
 
     clone(): ModuleFormation{

@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var core_1 = require("@angular/core");
 var Game_1 = require("../model/Game");
 var GameSave_1 = require("../model/GameSave");
+var DB_1 = require("../model/DB");
 var GameService = (function () {
     function GameService() {
         this.LSID_SAVES = 'universitySaves';
@@ -41,6 +42,7 @@ var GameService = (function () {
             allSaves = new Array();
         }
         var gs = new GameSave_1.GameSave(game);
+        gs.datas = DB_1.DB.saveToJSON();
         allSaves.push(gs);
         localStorage.setItem(this.LSID_SAVES, JSON.stringify(allSaves));
     };
@@ -51,6 +53,7 @@ var GameService = (function () {
         }
         else {
             var gs = allSaves[index];
+            DB_1.DB.loadFromJSON(gs.datas);
             return gs.game;
         }
     };

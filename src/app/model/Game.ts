@@ -4,8 +4,11 @@ import { TypeBatiment } from '../model/TypeBatiment';
 import { Batiment } from '../model/Batiment';
 import { Formation } from '../model/Formation';
 import { Employee } from '../model/Employee';
-
+import { NewGameOptions } from './NewGameOptions';
+import { World } from './World';
 import { Util } from '../model/Util';
+import { IAService } from '../model/IA';
+import { DB } from '../model/DB';
 
 enum GamePhase {
   PRE_RENTREE,
@@ -16,19 +19,47 @@ export class Game {
   player: Player = null;
   university: University = null;
   phase: GamePhase = GamePhase.PRE_RENTREE;
+  options: NewGameOptions;
+  world: World = new World();
 
   public static fromJSON(json: Object): Game {
     let g: Game = new Game();
 
-    g.player = Player.fromJSON(json['player']);
+    /*g.player = Player.fromJSON(json['player']);
     g.university = University.fromJSON(json['university']);
+    g.options = NewGameOptions.fromJSON(json['options']);
+    g.world = World.fromJSON(json['world']);
+*/
+    g.phase = json['phase'];
+    g.player = Player.fromJSON(json['player']); 
+    g.university = DB.findUniversityById(json['universityId']);
+    if(g.university == null){
+      g.university = new University();
+      g.university.id = json['universityId'];
+    }
+    g.options = NewGameOptions.fromJSON(json['options']);
+    g.world = World.fromJSON(json['world']);
 
     return g;
   }
 
+  toJSON(): Object{
+    let json = {
+      phase: this.phase,
+      player: this.player.toJSON(),
+      universityId: this.university.id,
+      options: this.options.toJSON(),
+      world: this.world.toJSON()
+    };
+
+    return json;
+  }
+
   constructor(){
     this.player = new Player();
-    this.university = new University();
+    this.university = DB.newUniversity();
+    this.world = new World();
+    this.options = new NewGameOptions();    
   }
 
   canBuild(type: TypeBatiment): boolean {

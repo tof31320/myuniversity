@@ -10,6 +10,13 @@ var Player = (function () {
         Object.assign(p, json);
         return p;
     };
+    Player.prototype.toJSON = function () {
+        var json = {
+            name: this.name,
+            money: this.money
+        };
+        return json;
+    };
     return Player;
 }());
 exports.Player = Player;

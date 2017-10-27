@@ -9,4 +9,13 @@ export class Domaine {
         Object.assign(d, json);
         return d;
     }
+
+    toJSON(){
+        return {
+            id: this.id,
+            nom: this.nom,
+            nbModulesMin: this.nbModulesMin,
+            nbModulesMax: this.nbModulesMax
+        }
+    }
 }

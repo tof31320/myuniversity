@@ -11,6 +11,14 @@ var Domaine = (function () {
         Object.assign(d, json);
         return d;
     };
+    Domaine.prototype.toJSON = function () {
+        return {
+            id: this.id,
+            nom: this.nom,
+            nbModulesMin: this.nbModulesMin,
+            nbModulesMax: this.nbModulesMax
+        };
+    };
     return Domaine;
 }());
 exports.Domaine = Domaine;

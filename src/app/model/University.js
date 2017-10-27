@@ -2,8 +2,10 @@
 var Batiment_1 = require("./Batiment");
 var Formation_1 = require("./Formation");
 var Employee_1 = require("./Employee");
+var DB_1 = require("./DB");
 var University = (function () {
     function University() {
+        this.id = 0;
         this.name = '';
         this.areaSize = 20;
         this.batiments = new Array();
@@ -14,20 +16,39 @@ var University = (function () {
         var u = new University();
         u.name = json['name'];
         u.areaSize = json['areaSize'];
-        for (var i = 0; i < json['batiments'].length; i++) {
-            var b = Batiment_1.Batiment.fromJSON(json['batiments'][i]);
-            u.batiments.push(b);
-        }
-        u.formations = new Array();
-        for (var i = 0; i < json['formations'].length; i++) {
-            var f = Formation_1.Formation.fromJSON(json['formations'][i]);
-            u.formations.push(f);
-        }
-        u.employees = new Array();
-        for (var i = 0; i < json['employees'].length; i++) {
-            var e = Employee_1.Employee.fromJSON(json['employees'][i]);
-            u.employees.push(e);
-        }
+        u.batiments = json['batiments'].map(function (bid) {
+            var bat = DB_1.DB.findBatimentById(bid);
+            if (bat == null) {
+                bat = new Batiment_1.Batiment();
+                bat.id = bid;
+                return bat;
+            }
+            else {
+                return bat;
+            }
+        });
+        u.formations = json['formations'].map(function (fid) {
+            var f = DB_1.DB.findFormationById(fid);
+            if (f == null) {
+                f = new Formation_1.Formation();
+                f.id = fid;
+                return f;
+            }
+            else {
+                return f;
+            }
+        });
+        u.employees = json['employees'].map(function (eid) {
+            var e = DB_1.DB.findEmployeeById(eid);
+            if (e == null) {
+                e = new Employee_1.Employee();
+                e.id = eid;
+                return e;
+            }
+            else {
+                return e;
+            }
+        });
         return u;
     };
     University.prototype.usedSpace = function () {
@@ -36,6 +57,16 @@ var University = (function () {
             n += this.batiments[i].type.size;
         }
         return n;
+    };
+    University.prototype.toJSON = function () {
+        return {
+            id: this.id,
+            name: this.name,
+            areaSize: this.areaSize,
+            batiments: this.batiments.map(function (b) { return b.id; }),
+            formations: this.formations.map(function (f) { return f.id; }),
+            employees: this.employees.map(function (e) { return e.id; })
+        };
     };
     University.prototype.findBatimentById = function (id) {
         for (var i = 0; i < this.batiments.length; i++) {

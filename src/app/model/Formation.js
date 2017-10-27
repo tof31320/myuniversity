@@ -1,8 +1,8 @@
 "use strict";
-var Domaine_1 = require("./Domaine");
 var ModuleFormation_1 = require("./ModuleFormation");
 var Util_1 = require("./Util");
 var Batiment_1 = require("./Batiment");
+var DB_1 = require("./DB");
 var Formation = (function () {
     function Formation() {
         this.id = 0;
@@ -14,7 +14,7 @@ var Formation = (function () {
         var f = new Formation();
         f.id = json['id'];
         f.intitule = json['intitule'];
-        f.domaine = Domaine_1.Domaine.fromJSON(json['domaine']);
+        f.domaine = DB_1.DB.findDomaineById(json['domaine']);
         f.modules = new Array();
         for (var i = 0; json['modules'] && i < json['modules'].length; i++) {
             f.modules.push(ModuleFormation_1.ModuleFormation.fromJSON(json['modules'][i]));
@@ -23,6 +23,15 @@ var Formation = (function () {
             f.batiment = Batiment_1.Batiment.fromJSON(json['batiment']);
         }
         return f;
+    };
+    Formation.prototype.toJSON = function () {
+        return {
+            id: this.id,
+            intitule: this.intitule,
+            domaineId: this.domaine != null ? this.domaine.id : null,
+            modules: this.modules.map(function (m) { return m.toJSON(); }),
+            batimentId: this.batiment != null ? this.batiment.id : null
+        };
     };
     Formation.prototype.addModule = function (m) {
         if (!this.containsModule(m)) {

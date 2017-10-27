@@ -16,6 +16,15 @@ var TypeBatiment = (function () {
         t.size = json['size'];
         return t;
     };
+    TypeBatiment.prototype.toJSON = function () {
+        return {
+            id: this.id,
+            nom: this.nom,
+            icon: this.icon,
+            price: this.price,
+            size: this.size
+        };
+    };
     return TypeBatiment;
 }());
 exports.TypeBatiment = TypeBatiment;

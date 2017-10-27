@@ -11,6 +11,10 @@
                 <input id="universityName" type="text" name="universityName" placeholder="Le nom de l'université" #universityName="ngModel" [(ngModel)]="newGame.university.name" required>
                 <span *ngIf="universityName.invalid && universityName.dirty && universityName.errors.required" class="pure-form-message-inline">This is a required field.</span>
             </div>
+            <div class="pure-control-group">
+                <label for="nbPlayers">Nombre d'universités</label>
+                <input id="nbPlayers" type="number" name="nbPlayers" [(ngModel)]="newGame.options.nbOtherUniversities" required>                
+            </div>
             <div class="pure-controls">
                 <button type="submit" class="pure-button pure-button-primary" [disabled]="!newGameForm.form.valid">Jouer</button>
             </div>

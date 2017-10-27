@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Game } from '../model/Game';
 import { GameSave } from '../model/GameSave';
+import { DB } from '../model/DB';
 
 @Injectable()
 export class GameService {
@@ -17,7 +18,7 @@ export class GameService {
     let json = JSON.parse(localStorage.getItem(this.LSID_SAVES));
     for(let i = 0; i < json.length; i++){
       let gs: GameSave = GameSave.fromJSON(json[i]);
-
+ 
       saves.push(gs);
     }
     return saves;
@@ -44,7 +45,7 @@ export class GameService {
     }
 
     let gs: GameSave  = new GameSave(game);
-
+    gs.datas = DB.saveToJSON();
     allSaves.push(gs);
 
     localStorage.setItem(this.LSID_SAVES, JSON.stringify(allSaves));
@@ -58,6 +59,8 @@ export class GameService {
 
     }else{
       let gs: GameSave = allSaves[index];
+      
+      DB.loadFromJSON(gs.datas);
 
       return gs.game;
     }

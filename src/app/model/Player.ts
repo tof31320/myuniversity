@@ -8,6 +8,14 @@ export class Player {
     return p;
   }
 
+  toJSON(): Object {
+    let json = {
+      name: this.name,
+      money: this.money
+    };
+    return json;
+  }
+
   constructor(){
     this.money = 3000;
   }

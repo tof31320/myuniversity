@@ -13,6 +13,9 @@ var game_component_1 = require("../../game/game.component");
 var WorldScreenComponent = (function () {
     function WorldScreenComponent() {
     }
+    WorldScreenComponent.prototype.ngOnInit = function () {
+        this.world = this.gameComponent.game.world;
+    };
     return WorldScreenComponent;
 }());
 __decorate([

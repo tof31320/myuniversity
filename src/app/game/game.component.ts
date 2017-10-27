@@ -4,6 +4,7 @@ import { GameService } from '../game/game.service';
 import { ServiceModel } from '../model/ServiceModel.service';
 import { AppComponent } from '../app.component';
 import { Random } from '../model/Random';
+import { DB } from '../model/DB';
 
 @Component({
   selector: 'game',
@@ -24,11 +25,11 @@ export class GameComponent implements OnInit {
   }
 
   ngOnInit(){
-    this.serviceModel.getAllLastnames().subscribe(names => Random.allLastnames = names);
-    this.serviceModel.getAllFirstnames('M').subscribe(names => Random.allFirstnamesMale = names);
-    this.serviceModel.getAllFirstnames('F').subscribe(names => Random.allFirstnamesFemale = names);
-    this.serviceModel.getAllAvatars('M').subscribe(avatars => Random.allAvatarsMale = avatars);
-    this.serviceModel.getAllAvatars('F').subscribe(avatars => Random.allAvatarsFemale = avatars);
+    this.serviceModel.getAllLastnames().subscribe(names => DB.lastnames = names);
+    this.serviceModel.getAllFirstnames('M').subscribe(names => DB.firstnames['males'] = names);
+    this.serviceModel.getAllFirstnames('F').subscribe(names => DB.firstnames['females'] = names);
+    this.serviceModel.getAllAvatars('M').subscribe(avatars => DB.avatars['males'] = avatars);
+    this.serviceModel.getAllAvatars('F').subscribe(avatars => DB.avatars['females'] = avatars);
 
     
   }

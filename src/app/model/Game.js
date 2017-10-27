@@ -2,7 +2,10 @@
 var Player_1 = require("../model/Player");
 var University_1 = require("../model/University");
 var Batiment_1 = require("../model/Batiment");
+var NewGameOptions_1 = require("./NewGameOptions");
+var World_1 = require("./World");
 var Util_1 = require("../model/Util");
+var DB_1 = require("../model/DB");
 var GamePhase;
 (function (GamePhase) {
     GamePhase[GamePhase["PRE_RENTREE"] = 0] = "PRE_RENTREE";
@@ -14,14 +17,39 @@ var Game = (function () {
         this.player = null;
         this.university = null;
         this.phase = GamePhase.PRE_RENTREE;
+        this.world = new World_1.World();
         this.player = new Player_1.Player();
-        this.university = new University_1.University();
+        this.university = DB_1.DB.newUniversity();
+        this.world = new World_1.World();
+        this.options = new NewGameOptions_1.NewGameOptions();
     }
     Game.fromJSON = function (json) {
         var g = new Game();
+        /*g.player = Player.fromJSON(json['player']);
+        g.university = University.fromJSON(json['university']);
+        g.options = NewGameOptions.fromJSON(json['options']);
+        g.world = World.fromJSON(json['world']);
+    */
+        g.phase = json['phase'];
         g.player = Player_1.Player.fromJSON(json['player']);
-        g.university = University_1.University.fromJSON(json['university']);
+        g.university = DB_1.DB.findUniversityById(json['universityId']);
+        if (g.university == null) {
+            g.university = new University_1.University();
+            g.university.id = json['universityId'];
+        }
+        g.options = NewGameOptions_1.NewGameOptions.fromJSON(json['options']);
+        g.world = World_1.World.fromJSON(json['world']);
         return g;
+    };
+    Game.prototype.toJSON = function () {
+        var json = {
+            phase: this.phase,
+            player: this.player.toJSON(),
+            universityId: this.university.id,
+            options: this.options.toJSON(),
+            world: this.world.toJSON()
+        };
+        return json;
     };
     Game.prototype.canBuild = function (type) {
         return this.player.money >= type.price

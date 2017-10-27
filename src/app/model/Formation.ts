@@ -2,6 +2,7 @@ import { Domaine } from './Domaine';
 import { ModuleFormation } from './ModuleFormation';
 import { Util } from './Util';
 import { Batiment } from './Batiment';
+import { DB } from './DB';
 
 export class Formation {
   id: number = 0;
@@ -14,7 +15,8 @@ export class Formation {
     let f: Formation = new Formation();
     f.id = json['id'];
     f.intitule = json['intitule'];
-    f.domaine = Domaine.fromJSON(json['domaine']);
+
+    f.domaine = DB.findDomaineById(json['domaine']);
 
     f.modules = new Array();
     for(let i = 0; json['modules'] && i < json['modules'].length; i++){
@@ -26,6 +28,16 @@ export class Formation {
     }
 
     return f;
+  }
+
+  toJSON(){
+    return {
+      id: this.id,
+      intitule: this.intitule,
+      domaineId: this.domaine != null ? this.domaine.id : null,
+      modules: this.modules.map(m => m.toJSON()),
+      batimentId: this.batiment != null ? this.batiment.id : null
+    }
   }
 
   addModule(m: ModuleFormation){

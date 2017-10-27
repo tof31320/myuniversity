@@ -15,4 +15,14 @@ export class TypeBatiment {
 
     return t;
   }
+
+  toJSON(){
+    return {
+      id: this.id,
+      nom: this.nom,
+      icon: this.icon,
+      price: this.price,
+      size: this.size
+    }
+  }
 }

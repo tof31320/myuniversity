@@ -12,6 +12,9 @@ var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var Random_1 = require("../model/Random");
 var Employee_1 = require("./Employee");
+var University_1 = require("./University");
+var Formation_1 = require("./Formation");
+var DB_1 = require("./DB");
 var IAService = (function () {
     function IAService(http) {
         this.http = http;
@@ -39,6 +42,24 @@ var IAService = (function () {
             ret.push(p);
         }
         return ret;
+    };
+    IAService.prototype.createUniversity = function () {
+        var u = new University_1.University();
+        u.id = DB_1.DB.nextId();
+        u.name = "University " + Random_1.Random.randomNumber(1, 100);
+        var nbFormations = Random_1.Random.randomNumber(1, 5);
+        for (var i = 0; i < nbFormations; i++) {
+            var f = this.createFormation();
+            u.formations.push(f);
+        }
+        return u;
+    };
+    IAService.prototype.createFormation = function () {
+        var f = new Formation_1.Formation();
+        f.id = DB_1.DB.nextId();
+        f.intitule = "Formation " + Random_1.Random.randomNumber(1, 1000);
+        f.modules = new Array();
+        return f;
     };
     return IAService;
 }());

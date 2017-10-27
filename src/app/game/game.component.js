@@ -13,7 +13,7 @@ var Game_1 = require("../model/Game");
 var game_service_1 = require("../game/game.service");
 var ServiceModel_service_1 = require("../model/ServiceModel.service");
 var app_component_1 = require("../app.component");
-var Random_1 = require("../model/Random");
+var DB_1 = require("../model/DB");
 var GameComponent = (function () {
     function GameComponent(gameService, serviceModel) {
         this.gameService = gameService;
@@ -22,11 +22,11 @@ var GameComponent = (function () {
         this.currentScreen = 'dashboard';
     }
     GameComponent.prototype.ngOnInit = function () {
-        this.serviceModel.getAllLastnames().subscribe(function (names) { return Random_1.Random.allLastnames = names; });
-        this.serviceModel.getAllFirstnames('M').subscribe(function (names) { return Random_1.Random.allFirstnamesMale = names; });
-        this.serviceModel.getAllFirstnames('F').subscribe(function (names) { return Random_1.Random.allFirstnamesFemale = names; });
-        this.serviceModel.getAllAvatars('M').subscribe(function (avatars) { return Random_1.Random.allAvatarsMale = avatars; });
-        this.serviceModel.getAllAvatars('F').subscribe(function (avatars) { return Random_1.Random.allAvatarsFemale = avatars; });
+        this.serviceModel.getAllLastnames().subscribe(function (names) { return DB_1.DB.lastnames = names; });
+        this.serviceModel.getAllFirstnames('M').subscribe(function (names) { return DB_1.DB.firstnames['males'] = names; });
+        this.serviceModel.getAllFirstnames('F').subscribe(function (names) { return DB_1.DB.firstnames['females'] = names; });
+        this.serviceModel.getAllAvatars('M').subscribe(function (avatars) { return DB_1.DB.avatars['males'] = avatars; });
+        this.serviceModel.getAllAvatars('F').subscribe(function (avatars) { return DB_1.DB.avatars['females'] = avatars; });
     };
     GameComponent.prototype.showMainMenu = function () {
         this.menuInGameVisible = true;

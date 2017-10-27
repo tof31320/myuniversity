@@ -1,6 +1,7 @@
 "use strict";
 var Employee_1 = require("./Employee");
 var Util_1 = require("./Util");
+var DB_1 = require("./DB");
 var ModuleFormation = (function () {
     function ModuleFormation() {
         this.id = 0;
@@ -11,12 +12,23 @@ var ModuleFormation = (function () {
     ModuleFormation.fromJSON = function (json) {
         var m = new ModuleFormation();
         Object.assign(m, json);
-        m.teachers = new Array();
-        for (var i = 0; json['teachers'] && i < json['teachers'].length; i++) {
-            var emp = Employee_1.Employee.fromJSON(json['teachers'][i]);
-            m.teachers.push(emp);
-        }
+        m.teachers = json['teachersId'].map(function (eid) {
+            var e = DB_1.DB.findEmployeeById(eid);
+            if (e == null) {
+                e = new Employee_1.Employee();
+                e.id = eid;
+            }
+            return e;
+        });
         return m;
+    };
+    ModuleFormation.prototype.toJSON = function () {
+        return {
+            id: this.id,
+            nom: this.nom,
+            hVol: this.hVol,
+            teachersId: this.teachers.map(function (e) { return e.id; })
+        };
     };
     ModuleFormation.prototype.clone = function () {
         return ModuleFormation.fromJSON(JSON.parse(JSON.stringify(this)));
